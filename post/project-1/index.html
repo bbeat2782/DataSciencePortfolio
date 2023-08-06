@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Project 1: San Diego Collision EDA | SangGyu An</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Using Tableau for analyzing San Diego County Collision since 2016">
+    <meta name="generator" content="Hugo 0.115.2">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="https://bbeat2782.github.io/DataSciencePortfolio/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Project 1: San Diego Collision EDA" />
+<meta property="og:description" content="Using Tableau for analyzing San Diego County Collision since 2016" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bbeat2782.github.io/DataSciencePortfolio/post/project-1/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-05-01T10:58:08-04:00" />
+<meta property="article:modified_time" content="2023-05-01T10:58:08-04:00" />
+<meta itemprop="name" content="Project 1: San Diego Collision EDA">
+<meta itemprop="description" content="Using Tableau for analyzing San Diego County Collision since 2016"><meta itemprop="datePublished" content="2023-05-01T10:58:08-04:00" />
+<meta itemprop="dateModified" content="2023-05-01T10:58:08-04:00" />
+<meta itemprop="wordCount" content="701">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Project 1: San Diego Collision EDA"/>
+<meta name="twitter:description" content="Using Tableau for analyzing San Diego County Collision since 2016"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  <header class="cover bg-top" style="background-image: url('https://bbeat2782.github.io/DataSciencePortfolio/images/project1/tableau_dashboard.png');">
+    <div class="bg-black-80">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://bbeat2782.github.io/DataSciencePortfolio/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        SangGyu An
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://bbeat2782.github.io/DataSciencePortfolio/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://bbeat2782.github.io/DataSciencePortfolio/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://bbeat2782.github.io/DataSciencePortfolio/post/" title="Projects page">
+              Projects
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+    
+    <a href="https://github.com/bbeat2782" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.linkedin.com/in/sanggyu-an-704104126/" target="_blank" rel="noopener" class="linkedin ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" aria-label="follow on LinkedIn——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://medium.com/@bbeat2782" target="_blank" rel="noopener" class="medium ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Medium link" aria-label="follow on Medium——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 170 170;" version="1.1" viewBox="0 0 170 170"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M46.5340803,65.2157554 C46.6968378,63.6076572 46.0836,62.018231 44.8828198,60.93592 L32.6512605,46.2010582 L32.6512605,44 L70.6302521,44 L99.9859944,108.380952 L125.794585,44 L162,44 L162,46.2010582 L151.542017,56.2281011 C150.640424,56.9153477 150.193188,58.0448862 150.380019,59.1628454 L150.380019,132.837155 C150.193188,133.955114 150.640424,135.084652 151.542017,135.771899 L161.755369,145.798942 L161.755369,148 L110.38282,148 L110.38282,145.798942 L120.963119,135.527337 C122.002801,134.487948 122.002801,134.182246 122.002801,132.592593 L122.002801,73.0417402 L92.585901,147.755438 L88.6106443,147.755438 L54.3622782,73.0417402 L54.3622782,123.115814 C54.0767278,125.221069 54.7759199,127.3406 56.2581699,128.863022 L70.0186741,145.55438 L70.0186741,147.755438 L31,147.755438 L31,145.55438 L44.7605042,128.863022 C46.2319621,127.338076 46.8903838,125.204485 46.5340803,123.115814 L46.5340803,65.2157554 Z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Project 1: San Diego Collision EDA</div>
+          
+            <div class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              Using Tableau for analyzing San Diego County Collision since 2016
+            </div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <h1 class="f1 athelas mt3 mb1">Project 1: San Diego Collision EDA</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2023-05-01T10:58:08-04:00">May 1, 2023</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="why-it-matters">Why it matters?</h1>
+<p>In Korea, a car navigation system notifies me whenever I enter an &ldquo;accident-prone area&rdquo;. This especially helped me to stay alert in those areas so that I don&rsquo;t get into an accident. However, as far as I know, there is no such service in a navigation system in the US. Thus, I was curious about what areas in San Diego are &ldquo;accident-prone areas&rdquo; so that I and other drivers in San Diego need to be extra cautious while driving.</p>
+<p>On top of that, as an inexperienced driver, I was always told in Korea that lane change is the hardest task. I found this is true for myself since it was hard to be inside a lane and know the exact timing of when to tilt a handle so that I don&rsquo;t crash with a car behind me. However, one of the reasons for this is that Korea has narrow lanes. Since lanes in the US aren&rsquo;t as narrow as those in Korea, I wanted to explore whether lane change is also the main cause of car collisions or if there are other actions I need to be more cautious of.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li>Grabbed original dataset from City of San Diego Open Data Portal, <a href="https://data.sandiego.gov/datasets/police-collisions/">Traffic Collisions - basic reports</a> and <a href="https://data.sandiego.gov/datasets/police-beats/">Police Beats</a> and grid map of San Diego from <a href="https://www.sangis.org/">SanGis</a></li>
+<li>Applied geocoding to unique addresses using Python and Google Geocoding API and stored in SQLite database</li>
+<li>Engineered features from the text of each unique charge description to group them into larger categories</li>
+<li>Created interactive visualization with Tableau so that viewers can look at specific location in San Diego County</li>
+</ul>
+<h1 id="data-collection">Data Collection</h1>
+<h3 id="original-dataset">Original dataset</h3>
+<h4 id="1-traffic-collisions---basic-reports">1. Traffic Collisions - basic reports</h4>
+<p>The following is a sample rows from the dataset that contains record from 2015 January to 2023 May. It&rsquo;s downloaded from City of San Diego Open Data Portal, and it updates daily.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">report_id</th>
+<th style="text-align:right">date_time</th>
+<th style="text-align:left">police_beat</th>
+<th style="text-align:right">address_no_primary</th>
+<th style="text-align:right">address_pd_primary</th>
+<th style="text-align:left">address_road_primary</th>
+<th style="text-align:left">address_sfx_primary</th>
+<th style="text-align:left">violation_section</th>
+<th style="text-align:left">violation_type</th>
+<th style="text-align:left">charge_desc</th>
+<th style="text-align:left">injured</th>
+<th style="text-align:left">killed</th>
+<th style="text-align:left">hit_run_lvl</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">171111</td>
+<td style="text-align:right">2015-01-14 20:00:00</td>
+<td style="text-align:left">835</td>
+<td style="text-align:right">4200</td>
+<td style="text-align:right"></td>
+<td style="text-align:left">JUNIPER</td>
+<td style="text-align:left">STREET</td>
+<td style="text-align:left">MISC-HAZ</td>
+<td style="text-align:left">VC</td>
+<td style="text-align:left">MISCELLANEOUS HAZARDOUS VIOLATIONS OF THE VEHICLE CODE</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">MISDEMEANOR</td>
+</tr>
+<tr>
+<td style="text-align:right">192016</td>
+<td style="text-align:right">2015-03-19 12:00:00</td>
+<td style="text-align:left">622</td>
+<td style="text-align:right">5200</td>
+<td style="text-align:right"></td>
+<td style="text-align:left">LINDA VISTA</td>
+<td style="text-align:left">ROAD</td>
+<td style="text-align:left">MISC-HAZ</td>
+<td style="text-align:left">VC</td>
+<td style="text-align:left">MISCELLANEOUS HAZARDOUS VIOLATIONS OF THE VEHICLE CODE</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">MISDEMEANOR</td>
+</tr>
+<tr>
+<td style="text-align:right">190012</td>
+<td style="text-align:right">2015-03-24 03:05:00</td>
+<td style="text-align:left">626</td>
+<td style="text-align:right">1000</td>
+<td style="text-align:right">W</td>
+<td style="text-align:left">WASHINGTON</td>
+<td style="text-align:left">STREET</td>
+<td style="text-align:left">22107</td>
+<td style="text-align:left">VC</td>
+<td style="text-align:left">TURNING MOVEMENTS AND REQUIRED SIGNALS</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">nan</td>
+</tr>
+<tr>
+<td style="text-align:right">191866</td>
+<td style="text-align:right">2015-03-27 23:56:00</td>
+<td style="text-align:left">613</td>
+<td style="text-align:right">2800</td>
+<td style="text-align:right"></td>
+<td style="text-align:left">WORDEN</td>
+<td style="text-align:left">STREET</td>
+<td style="text-align:left">22107</td>
+<td style="text-align:left">VC</td>
+<td style="text-align:left">TURNING MOVEMENTS AND REQUIRED SIGNALS</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">nan</td>
+</tr>
+<tr>
+<td style="text-align:right">185207</td>
+<td style="text-align:right">2015-07-06 11:45:00</td>
+<td style="text-align:left">813</td>
+<td style="text-align:right">2800</td>
+<td style="text-align:right"></td>
+<td style="text-align:left">EL CAJON</td>
+<td style="text-align:left">BOULEVARD</td>
+<td style="text-align:left">20002(A)</td>
+<td style="text-align:left">VC</td>
+<td style="text-align:left">HIT AND RUN</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">MISDEMEANOR</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-police-beats">2. Police Beats</h4>
+<p>The following is a mapping of <em>police_beat</em> values from the above dataset into neighbor names in San Diego. It also contains the shp files of each neighbors.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">beat</th>
+<th style="text-align:left">neighborhood</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">111</td>
+<td style="text-align:left">Clairemont Mesa East</td>
+</tr>
+<tr>
+<td style="text-align:right">112</td>
+<td style="text-align:left">Clairemont Mesa West</td>
+</tr>
+<tr>
+<td style="text-align:right">113</td>
+<td style="text-align:left">Bay Ho</td>
+</tr>
+<tr>
+<td style="text-align:right">114</td>
+<td style="text-align:left">North Clairemont</td>
+</tr>
+<tr>
+<td style="text-align:right">115</td>
+<td style="text-align:left">University City</td>
+</tr>
+</tbody>
+</table>
+<figure><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project1/sd_beat.png"/>
+</figure>
+
+<h4 id="3-grid-map-of-san-diego">3. Grid Map of San Diego</h4>
+<p>The following is a sub grid of the Regional Public Safety Geodatabase&rsquo;s Public Safety Grid. Each grid is about 0.3 miles * 0.6 miles (width * height).</p>
+<figure><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project1/sd_grid.png"/>
+</figure>
+
+<h3 id="geocoding">Geocoding</h3>
+<p>Used this <a href="https://github.com/bbeat2782/Projects/blob/main/san_diego_collision_eda/retrieve_geocode.ipynb">script</a> to geocode addresses using Google Geocoding API and store in a SQLite database.</p>
+<figure><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project1/sqlite_db.png"/>
+</figure>
+
+<h1 id="data-cleaning">Data Cleaning</h1>
+<h3 id="1-charge_desc-mapping">1. charge_desc Mapping</h3>
+<p>Because charge_desc (charge description) values in the <strong>Traffic Collisions - basic reports</strong> are hand recorded by different police officers, different abbreviations and wordings are used throughout the rows. Thus, I needed to group them into higher level categories. Below is a sample mapping.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">original_cause</th>
+<th style="text-align:left">abbreviate_cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">DRVG WITHOUT VALID DRVR&rsquo;S LIC (M)</td>
+<td style="text-align:left">without valid license</td>
+</tr>
+<tr>
+<td style="text-align:left">TURNING MOVEMENTS AND REQUIRED SIGNALS</td>
+<td style="text-align:left">unsafe turn</td>
+</tr>
+<tr>
+<td style="text-align:left">HIT AND RUN RESULTING IN DEATH OR INJURY(IBR 90Z)</td>
+<td style="text-align:left">hit and run</td>
+</tr>
+<tr>
+<td style="text-align:left">PEDESTRIAN NOT TO SUDDENLY ENTER PATH, ETC</td>
+<td style="text-align:left">pedestrian</td>
+</tr>
+<tr>
+<td style="text-align:left">FAIL TO STOP AT LIMIT LINE AT RR CROSSING (I)</td>
+<td style="text-align:left">stop violation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-geocoding-cleaning">2. Geocoding Cleaning</h3>
+<p>Google Geocoding API were unable to locate some addresses due to incorrect address and unable to understanding Spanish abbreviations of address such as CAM for Camino and CMT for Caminito. Thus, I needed to confirm those by hand.</p>
+<h3 id="3-shape-file-cleaning">3. Shape File Cleaning</h3>
+<p>Since I&rsquo;m only interested in collisions in San Diego, I used the shp file from <strong>Police Beats</strong> to only extract grids that overlap with polygons from <strong>Police Beats</strong></p>
+<pre tabindex="0"><code># using intersects() from geopandas
+extract_necessary_grids = [np.any(police_beat[&#39;geometry&#39;].intersects(g)) 
+                                for g in sd_grid[&#39;geometry&#39;]]
+sd_grid_trim = sd_grid[extract_necessary_grids]
+</code></pre><h1 id="visualization">Visualization</h1>
+<figure><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project1/tableau_dashboard.png"/>
+</figure>
+
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://bbeat2782.github.io/DataSciencePortfolio/" >
+    &copy;  SangGyu An 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    
+    <a href="https://github.com/bbeat2782" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.linkedin.com/in/sanggyu-an-704104126/" target="_blank" rel="noopener" class="linkedin ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" aria-label="follow on LinkedIn——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://medium.com/@bbeat2782" target="_blank" rel="noopener" class="medium ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Medium link" aria-label="follow on Medium——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 170 170;" version="1.1" viewBox="0 0 170 170"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M46.5340803,65.2157554 C46.6968378,63.6076572 46.0836,62.018231 44.8828198,60.93592 L32.6512605,46.2010582 L32.6512605,44 L70.6302521,44 L99.9859944,108.380952 L125.794585,44 L162,44 L162,46.2010582 L151.542017,56.2281011 C150.640424,56.9153477 150.193188,58.0448862 150.380019,59.1628454 L150.380019,132.837155 C150.193188,133.955114 150.640424,135.084652 151.542017,135.771899 L161.755369,145.798942 L161.755369,148 L110.38282,148 L110.38282,145.798942 L120.963119,135.527337 C122.002801,134.487948 122.002801,134.182246 122.002801,132.592593 L122.002801,73.0417402 L92.585901,147.755438 L88.6106443,147.755438 L54.3622782,73.0417402 L54.3622782,123.115814 C54.0767278,125.221069 54.7759199,127.3406 56.2581699,128.863022 L70.0186741,145.55438 L70.0186741,147.755438 L31,147.755438 L31,145.55438 L44.7605042,128.863022 C46.2319621,127.338076 46.8903838,125.204485 46.5340803,123.115814 L46.5340803,65.2157554 Z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

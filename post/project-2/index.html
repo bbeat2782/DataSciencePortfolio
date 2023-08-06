@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Project 2: Metacritic User Rating Prediction | SangGyu An</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Predicting MetaCritic user ratings with data available before movies are released">
+    <meta name="generator" content="Hugo 0.115.2">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="https://bbeat2782.github.io/DataSciencePortfolio/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Project 2: Metacritic User Rating Prediction" />
+<meta property="og:description" content="Predicting MetaCritic user ratings with data available before movies are released" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bbeat2782.github.io/DataSciencePortfolio/post/project-2/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-07-15T11:00:59-04:00" />
+<meta property="article:modified_time" content="2023-07-15T11:00:59-04:00" />
+<meta itemprop="name" content="Project 2: Metacritic User Rating Prediction">
+<meta itemprop="description" content="Predicting MetaCritic user ratings with data available before movies are released"><meta itemprop="datePublished" content="2023-07-15T11:00:59-04:00" />
+<meta itemprop="dateModified" content="2023-07-15T11:00:59-04:00" />
+<meta itemprop="wordCount" content="2770">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Project 2: Metacritic User Rating Prediction"/>
+<meta name="twitter:description" content="Predicting MetaCritic user ratings with data available before movies are released"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  <header class="cover bg-top" style="background-image: url('https://bbeat2782.github.io/DataSciencePortfolio/images/project2/train_history.png');">
+    <div class="bg-black-80">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://bbeat2782.github.io/DataSciencePortfolio/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        SangGyu An
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://bbeat2782.github.io/DataSciencePortfolio/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://bbeat2782.github.io/DataSciencePortfolio/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://bbeat2782.github.io/DataSciencePortfolio/post/" title="Projects page">
+              Projects
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+    
+    <a href="https://github.com/bbeat2782" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.linkedin.com/in/sanggyu-an-704104126/" target="_blank" rel="noopener" class="linkedin ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" aria-label="follow on LinkedIn——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://medium.com/@bbeat2782" target="_blank" rel="noopener" class="medium ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Medium link" aria-label="follow on Medium——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 170 170;" version="1.1" viewBox="0 0 170 170"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M46.5340803,65.2157554 C46.6968378,63.6076572 46.0836,62.018231 44.8828198,60.93592 L32.6512605,46.2010582 L32.6512605,44 L70.6302521,44 L99.9859944,108.380952 L125.794585,44 L162,44 L162,46.2010582 L151.542017,56.2281011 C150.640424,56.9153477 150.193188,58.0448862 150.380019,59.1628454 L150.380019,132.837155 C150.193188,133.955114 150.640424,135.084652 151.542017,135.771899 L161.755369,145.798942 L161.755369,148 L110.38282,148 L110.38282,145.798942 L120.963119,135.527337 C122.002801,134.487948 122.002801,134.182246 122.002801,132.592593 L122.002801,73.0417402 L92.585901,147.755438 L88.6106443,147.755438 L54.3622782,73.0417402 L54.3622782,123.115814 C54.0767278,125.221069 54.7759199,127.3406 56.2581699,128.863022 L70.0186741,145.55438 L70.0186741,147.755438 L31,147.755438 L31,145.55438 L44.7605042,128.863022 C46.2319621,127.338076 46.8903838,125.204485 46.5340803,123.115814 L46.5340803,65.2157554 Z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Project 2: Metacritic User Rating Prediction</div>
+          
+            <div class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              Predicting MetaCritic user ratings with data available before movies are released
+            </div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <h1 class="f1 athelas mt3 mb1">Project 2: Metacritic User Rating Prediction</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2023-07-15T11:00:59-04:00">July 15, 2023</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="why-it-matters">Why it matters?</h1>
+<p>Oftentimes, you see a bad review of a movie from critics and think that you won&rsquo;t enjoy the movie. However, when you go to a theater and watch the movie for yourself, you find out you actually enjoy the movie. This happened to me when I watched <a href="https://www.metacritic.com/movie/extraction-2">Extraction 2</a>, <a href="https://www.metacritic.com/movie/transformers-rise-of-the-beasts">Transformers: Rise of the Beasts</a>, and <a href="https://www.metacritic.com/movie/guardians-of-the-galaxy-vol-3">Guardians of the Galaxy Vol. 3</a>. The opposite situation also happened and sometimes, critic ratings are similar to user ratings such as <a href="https://www.metacritic.com/movie/fast-x">Fast X</a> and <a href="https://www.metacritic.com/movie/john-wick-chapter-4">John Wick 4</a>.</p>
+<p>So it seems like critics and users rate the same movie differently, and that leads to different overall ratings. It makes sense because while users generally watch movies for enjoyment, critics expect movies to be a masterpiece in terms of art. Thus, if users solely believe in what critics say about a movie and watch it, they might not get what they want from watching the movie. So what if we can predict users&rsquo; ratings with text features from critic reviews? If this is possible, users will have a better understanding of what to expect from movies better than before.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li>Websraped movie info, critic reviews, and user reviews from <a href="https://www.metacritic.com/movie">Metacritic</a> using Python <code>BeautifulSoup</code> and stored in <code>SQLite</code> database.</li>
+<li>Extracted text sentiment features using <code>nltk.sentiment.SentimentIntensityAnalyzer</code> and keywords using <code>KeyBERT</code>.</li>
+<li>Analyzed scraped data using <code>plotly</code>.</li>
+<li>Improved mean absolute error by 37.69% when predicting user rating using features from critic reviews compared to assuming user ratings are equal to critic ratings.</li>
+</ul>
+<h1 id="data-collection">Data Collection</h1>
+<p>Webscraped using this <a href="https://github.com/bbeat2782/Projects/blob/rating_pred/rating_pred/collect_ratings.ipynb">script</a>.</p>
+<h2 id="original-dataset">Original dataset</h2>
+<h3 id="1-movie-table">1. <code>Movie</code> table</h3>
+<p>The following are sample rows from the <code>Movie</code> table that contains movie information from Metacritic as of 2023 June 16.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">movie_id</th>
+<th style="text-align:left">movie_title</th>
+<th style="text-align:right">movie_year</th>
+<th style="text-align:left">movie_summary</th>
+<th style="text-align:right">movie_critic_rating</th>
+<th style="text-align:right">movie_user_rating</th>
+<th style="text-align:right">movie_runtime</th>
+<th style="text-align:left">movie_genre</th>
+<th style="text-align:left">movie_subgenre</th>
+<th style="text-align:left">movie_sub2genre</th>
+<th style="text-align:left">movie_rating</th>
+<th style="text-align:right">num_critic_pos</th>
+<th style="text-align:right">num_critic_mix</th>
+<th style="text-align:right">num_critic_neg</th>
+<th style="text-align:right">num_user_pos</th>
+<th style="text-align:right">num_user_mix</th>
+<th style="text-align:right">num_user_neg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">-9222320398758708885</td>
+<td style="text-align:left">Generation War</td>
+<td style="text-align:right">2014</td>
+<td style="text-align:left">In Berlin in 1941, on the eve of Hitler’s inva&hellip;</td>
+<td style="text-align:right">57</td>
+<td style="text-align:right">7.4</td>
+<td style="text-align:right">270</td>
+<td style="text-align:left">Drama</td>
+<td style="text-align:left">History</td>
+<td style="text-align:left">War</td>
+<td style="text-align:left">Not Rated</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">34</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td style="text-align:right">-9219956025103179742</td>
+<td style="text-align:left">Gun Crazy</td>
+<td style="text-align:right">1950</td>
+<td style="text-align:left">A well meaning crack shot husband is pressured&hellip;</td>
+<td style="text-align:right">74</td>
+<td style="text-align:right">7.8</td>
+<td style="text-align:right">87</td>
+<td style="text-align:left">Drama</td>
+<td style="text-align:left">Thriller</td>
+<td style="text-align:left">Romance</td>
+<td style="text-align:left">Passed</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">-9218594262706343994</td>
+<td style="text-align:left">Iluzija</td>
+<td style="text-align:right">2006</td>
+<td style="text-align:left">Tortured by a tumultuous home life and school &hellip;</td>
+<td style="text-align:right">61</td>
+<td style="text-align:right">8.1</td>
+<td style="text-align:right">107</td>
+<td style="text-align:left">Drama</td>
+<td style="text-align:left">None</td>
+<td style="text-align:left">None</td>
+<td style="text-align:left">Not Rated</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td style="text-align:right">-9216529779443115283</td>
+<td style="text-align:left">Fired Up!</td>
+<td style="text-align:right">2009</td>
+<td style="text-align:left">Shawn and Nick are top scorers on the Ford Hig&hellip;</td>
+<td style="text-align:right">31</td>
+<td style="text-align:right">5.7</td>
+<td style="text-align:right">90</td>
+<td style="text-align:left">Comedy</td>
+<td style="text-align:left">None</td>
+<td style="text-align:left">None</td>
+<td style="text-align:left">PG-13</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">19</td>
+<td style="text-align:right">12</td>
+<td style="text-align:right">10</td>
+</tr>
+<tr>
+<td style="text-align:right">-9212162946756563061</td>
+<td style="text-align:left">Uncharted</td>
+<td style="text-align:right">2022</td>
+<td style="text-align:left">Street-smart Nathan Drake (Tom Holland) is rec&hellip;</td>
+<td style="text-align:right">45</td>
+<td style="text-align:right">6.2</td>
+<td style="text-align:right">116</td>
+<td style="text-align:left">Action</td>
+<td style="text-align:left">Adventure</td>
+<td style="text-align:left">None</td>
+<td style="text-align:left">PG-13</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">33</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">451</td>
+<td style="text-align:right">169</td>
+<td style="text-align:right">175</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-critics-table">2. <code>Critics</code> table</h3>
+<p>The following are sample rows from the <code>Critics</code> table that contains critic review information of movies from the <code>Movie</code> table.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">critic_review_id</th>
+<th style="text-align:right">movie_id</th>
+<th style="text-align:left">critic_name</th>
+<th style="text-align:left">critic_review</th>
+<th style="text-align:left">critic_date</th>
+<th style="text-align:right">critic_rating</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">145643</td>
+<td style="text-align:right">-1562356960487678241</td>
+<td style="text-align:left">Joshua Land</td>
+<td style="text-align:left">The result may be better suited for classroom &hellip;</td>
+<td style="text-align:left">None</td>
+<td style="text-align:right">60</td>
+</tr>
+<tr>
+<td style="text-align:right">163070</td>
+<td style="text-align:right">-8573132570105916711</td>
+<td style="text-align:left">Peter Bradshaw</td>
+<td style="text-align:left">This is a strong, fierce, heartfelt movie.</td>
+<td style="text-align:left">Nov 30, 2022</td>
+<td style="text-align:right">80</td>
+</tr>
+<tr>
+<td style="text-align:right">208027</td>
+<td style="text-align:right">-433637604116680176</td>
+<td style="text-align:left">Amy Nicholson</td>
+<td style="text-align:left">The screenplay, adapted by Peter Craig, Hillar&hellip;</td>
+<td style="text-align:left">Dec  9, 2021</td>
+<td style="text-align:right">40</td>
+</tr>
+<tr>
+<td style="text-align:right">191435</td>
+<td style="text-align:right">-1173456695746148219</td>
+<td style="text-align:left">Stephanie Zacharek</td>
+<td style="text-align:left">Disappointingly tame.</td>
+<td style="text-align:left">None</td>
+<td style="text-align:right">50</td>
+</tr>
+<tr>
+<td style="text-align:right">104342</td>
+<td style="text-align:right">-4403818285690920111</td>
+<td style="text-align:left">Tim Grierson</td>
+<td style="text-align:left">Despite its shortcomings, American Made can be&hellip;</td>
+<td style="text-align:left">Sep 28, 2017</td>
+<td style="text-align:right">72</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-users-table">3. <code>Users</code> table</h3>
+<p>The following are sample rows from the <code>Users</code> table that contains user review information of movies from the Movie table.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">user_review_id</th>
+<th style="text-align:right">movie_id</th>
+<th style="text-align:left">user_review</th>
+<th style="text-align:left">user_date</th>
+<th style="text-align:right">user_rating</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">74238</td>
+<td style="text-align:right">-3697458530605139559</td>
+<td style="text-align:left">Begginers is my favorite romantic movie and on&hellip;</td>
+<td style="text-align:left">Oct 26, 2020</td>
+<td style="text-align:right">10</td>
+</tr>
+<tr>
+<td style="text-align:right">11168</td>
+<td style="text-align:right">4282306499439292174</td>
+<td style="text-align:left">This movie feels like Imagine walking through &hellip;</td>
+<td style="text-align:left">Jan 25, 2020</td>
+<td style="text-align:right">9</td>
+</tr>
+<tr>
+<td style="text-align:right">310577</td>
+<td style="text-align:right">-6871826492128334529</td>
+<td style="text-align:left">The movie might lose its focus in the second h&hellip;</td>
+<td style="text-align:left">Aug 27, 2010</td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td style="text-align:right">185273</td>
+<td style="text-align:right">7131247308218877535</td>
+<td style="text-align:left">The one I really like was tribute to chadwick &hellip;</td>
+<td style="text-align:left">Feb  2, 2023</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td style="text-align:right">164346</td>
+<td style="text-align:right">-781771689375929617</td>
+<td style="text-align:left">Enough scares to keep you on the edge of your &hellip;</td>
+<td style="text-align:left">Dec 21, 2020</td>
+<td style="text-align:right">8</td>
+</tr>
+</tbody>
+</table>
+<h1 id="data-preprocessing">Data Preprocessing</h1>
+<h3 id="1-extracting-sentiment-scores">1. Extracting Sentiment Scores</h3>
+<p>With <code>SentimentIntensityAnalyzer</code> from the <code>nltk</code> package, I extracted negative, neutral, positive, and compound scores of combined reviews from each movie.</p>
+<pre tabindex="0"><code>from nltk.sentiment import SentimentIntensityAnalyzer
+
+sia = SentimentIntensityAnalyzer()
+polarity = sia.polarity_scores(text)
+</code></pre><h3 id="2-extracting-keywords">2. Extracting Keywords</h3>
+<p>With the <code>KeyBERT</code> from the <code>keybert</code> package, I extracted keywords from combined reviews for each possible rating from 0.0 to 10.0.</p>
+<pre tabindex="0"><code>kw_model = KeyBERT(model=&#39;all-MiniLM-L6-v2&#39;)
+kw = kw_model.extract_keywords(corpus, 
+                               keyphrase_ngram_range=(1, 1), 
+                               stop_words=&#39;english&#39;,
+                               use_maxsum=True,
+                               top_n=20)
+</code></pre><p>From the code block above,</p>
+<ul>
+<li><code>keyphrase_ngram_range</code>: Controls the ngram range of extracted keywords</li>
+<li><code>use_maxsum</code>: Controls the combination of the sum of cosine similarity to be the maximum value from 2 x top_n words to diversify the results</li>
+<li><code>top_n</code> : Controls the number of keywords to extract</li>
+</ul>
+<h3 id="final-dataframe-after-preprocessing">Final Dataframe after Preprocessing</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">movie_year</th>
+<th style="text-align:right">movie_critic_rating</th>
+<th style="text-align:right">movie_user_rating</th>
+<th style="text-align:right">num_critic_pos</th>
+<th style="text-align:right">num_critic_mix</th>
+<th style="text-align:right">num_critic_neg</th>
+<th style="text-align:right">mean_neg</th>
+<th style="text-align:right">std_neg</th>
+<th style="text-align:right">mean_neu</th>
+<th style="text-align:right">std_neu</th>
+<th style="text-align:right">mean_pos</th>
+<th style="text-align:right">std_pos</th>
+<th style="text-align:right">mean_compound</th>
+<th style="text-align:right">std_compound</th>
+<th style="text-align:left">Action</th>
+<th style="text-align:left">Adventure</th>
+<th style="text-align:left">Animation</th>
+<th style="text-align:left">Biography</th>
+<th style="text-align:left">Comedy</th>
+<th style="text-align:left">Crime</th>
+<th style="text-align:left">Documentary</th>
+<th style="text-align:left">Drama</th>
+<th style="text-align:left">Family</th>
+<th style="text-align:left">Fantasy</th>
+<th style="text-align:left">History</th>
+<th style="text-align:left">Horror</th>
+<th style="text-align:left">Music</th>
+<th style="text-align:left">Musical</th>
+<th style="text-align:left">Mystery</th>
+<th style="text-align:left">Romance</th>
+<th style="text-align:left">Sci-Fi</th>
+<th style="text-align:left">Sport</th>
+<th style="text-align:left">Thriller</th>
+<th style="text-align:left">War</th>
+<th style="text-align:left">Approved</th>
+<th style="text-align:left">G</th>
+<th style="text-align:left">NC-17</th>
+<th style="text-align:left">NR</th>
+<th style="text-align:left">Not Rated</th>
+<th style="text-align:left">PG</th>
+<th style="text-align:left">PG-13</th>
+<th style="text-align:left">Passed</th>
+<th style="text-align:left">R</th>
+<th style="text-align:left">TV-14</th>
+<th style="text-align:left">TV-G</th>
+<th style="text-align:left">TV-MA</th>
+<th style="text-align:left">TV-PG</th>
+<th style="text-align:left">Unrated</th>
+<th style="text-align:right">lively</th>
+<th style="text-align:right">ambitious</th>
+<th style="text-align:right">meticulously</th>
+<th style="text-align:right">genre</th>
+<th style="text-align:right">sophisticated</th>
+<th style="text-align:right">elegant</th>
+<th style="text-align:right">suspenseful</th>
+<th style="text-align:right">elusive</th>
+<th style="text-align:right">dull</th>
+<th style="text-align:right">mediocre</th>
+<th style="text-align:right">hackneyed</th>
+<th style="text-align:right">stylish</th>
+<th style="text-align:right">skillful</th>
+<th style="text-align:right">stylishly</th>
+<th style="text-align:right">portray</th>
+<th style="text-align:right">innocuous</th>
+<th style="text-align:right">archetypal</th>
+<th style="text-align:right">strenuous</th>
+<th style="text-align:right">artful</th>
+<th style="text-align:right">expressive</th>
+<th style="text-align:right">underdeveloped</th>
+<th style="text-align:right">richly</th>
+<th style="text-align:right">ambitiously</th>
+<th style="text-align:right">charismatic</th>
+<th style="text-align:right">witless</th>
+<th style="text-align:right">leisurely</th>
+<th style="text-align:right">sublimely</th>
+<th style="text-align:right">fiercely</th>
+<th style="text-align:right">shallow</th>
+<th style="text-align:right">uninspired</th>
+<th style="text-align:right">write</th>
+<th style="text-align:right">likable</th>
+<th style="text-align:right">perform</th>
+<th style="text-align:right">entertain</th>
+<th style="text-align:right">operatic</th>
+<th style="text-align:right">transcend</th>
+<th style="text-align:right">unpretentious</th>
+<th style="text-align:right">artistic</th>
+<th style="text-align:right">fleeting</th>
+<th style="text-align:right">earnestly</th>
+<th style="text-align:right">eminently</th>
+<th style="text-align:right">pensive</th>
+<th style="text-align:right">spell</th>
+<th style="text-align:right">act</th>
+<th style="text-align:right">achieve</th>
+<th style="text-align:right">unspeakable</th>
+<th style="text-align:right">flourish</th>
+<th style="text-align:right">performative</th>
+<th style="text-align:right">characterize</th>
+<th style="text-align:right">darkly</th>
+<th style="text-align:right">wander</th>
+<th style="text-align:right">easygoing</th>
+<th style="text-align:right">stylistic</th>
+<th style="text-align:right">inherent</th>
+<th style="text-align:right">voluptuous</th>
+<th style="text-align:right">novelistic</th>
+<th style="text-align:right">cinematic</th>
+<th style="text-align:right">fiendishly</th>
+<th style="text-align:right">youthful</th>
+<th style="text-align:right">emphasize</th>
+<th style="text-align:right">earnestness</th>
+<th style="text-align:right">underwhelme</th>
+<th style="text-align:right">inoffensive</th>
+<th style="text-align:right">shrill</th>
+<th style="text-align:right">lean</th>
+<th style="text-align:right">succeed</th>
+<th style="text-align:right">invaluable</th>
+<th style="text-align:right">transcendent</th>
+<th style="text-align:right">virtuous</th>
+<th style="text-align:right">grindingly</th>
+<th style="text-align:right">wistful</th>
+<th style="text-align:right">improvisational</th>
+<th style="text-align:right">convey</th>
+<th style="text-align:right">eclectic</th>
+<th style="text-align:right">whimsical</th>
+<th style="text-align:right">comic</th>
+<th style="text-align:right">melodramatic</th>
+<th style="text-align:right">turn</th>
+<th style="text-align:right">lackadaisical</th>
+<th style="text-align:right">aestheticize</th>
+<th style="text-align:right">passably</th>
+<th style="text-align:right">sophomoric</th>
+<th style="text-align:right">extensive</th>
+<th style="text-align:right">pure</th>
+<th style="text-align:right">abrupt</th>
+<th style="text-align:right">blandly</th>
+<th style="text-align:right">irresistible</th>
+<th style="text-align:right">dramatic</th>
+<th style="text-align:right">distressingly</th>
+<th style="text-align:right">mundane</th>
+<th style="text-align:right">overact</th>
+<th style="text-align:right">satirize</th>
+<th style="text-align:right">clichés</th>
+<th style="text-align:right">improvise</th>
+<th style="text-align:right">languidly</th>
+<th style="text-align:right">abandon</th>
+<th style="text-align:right">broodingly</th>
+<th style="text-align:right">dramatized</th>
+<th style="text-align:right">conspicuously</th>
+<th style="text-align:right">adjective</th>
+<th style="text-align:right">eloquent</th>
+<th style="text-align:right">universally</th>
+<th style="text-align:right">relentlessly</th>
+<th style="text-align:right">unrestrained</th>
+<th style="text-align:right">grimly</th>
+<th style="text-align:right">filmic</th>
+<th style="text-align:right">impenetrable</th>
+<th style="text-align:right">excite</th>
+<th style="text-align:right">operatically</th>
+<th style="text-align:right">playful</th>
+<th style="text-align:right">sharp</th>
+<th style="text-align:right">swiftly</th>
+<th style="text-align:right">expressively</th>
+<th style="text-align:right">charitably</th>
+<th style="text-align:right">strenuously</th>
+<th style="text-align:right">searingly</th>
+<th style="text-align:right">comical</th>
+<th style="text-align:right">breathtaking</th>
+<th style="text-align:right">boring</th>
+<th style="text-align:right">torturous</th>
+<th style="text-align:right">bombastic</th>
+<th style="text-align:right">resonate</th>
+<th style="text-align:right">reverential</th>
+<th style="text-align:right">unlikable</th>
+<th style="text-align:right">virtuosic</th>
+<th style="text-align:right">mischievous</th>
+<th style="text-align:right">lyrical</th>
+<th style="text-align:right">sophisticate</th>
+<th style="text-align:right">gradual</th>
+<th style="text-align:right">classically</th>
+<th style="text-align:right">instructive</th>
+<th style="text-align:right">rebellious</th>
+<th style="text-align:right">effortlessly</th>
+<th style="text-align:right">esoteric</th>
+<th style="text-align:right">androgynous</th>
+<th style="text-align:right">melancholy</th>
+<th style="text-align:right">rueful</th>
+<th style="text-align:right">atrocious</th>
+<th style="text-align:right">somber</th>
+<th style="text-align:right">weary</th>
+<th style="text-align:right">lackluster</th>
+<th style="text-align:right">meticulous</th>
+<th style="text-align:right">superficial</th>
+<th style="text-align:right">imaginative</th>
+<th style="text-align:right">extraordinary</th>
+<th style="text-align:right">meaningful</th>
+<th style="text-align:right">seductive</th>
+<th style="text-align:right">dullish</th>
+<th style="text-align:right">rambunctious</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">2018</td>
+<td style="text-align:right">80</td>
+<td style="text-align:right">7.3</td>
+<td style="text-align:right">22</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.0898182</td>
+<td style="text-align:right">0.10236</td>
+<td style="text-align:right">0.741182</td>
+<td style="text-align:right">0.175149</td>
+<td style="text-align:right">0.169</td>
+<td style="text-align:right">0.119288</td>
+<td style="text-align:right">0.259555</td>
+<td style="text-align:right">0.42102</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.2915</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3255</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.4243</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3182</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">2013</td>
+<td style="text-align:right">37</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">0.0489524</td>
+<td style="text-align:right">0.0697262</td>
+<td style="text-align:right">0.79</td>
+<td style="text-align:right">0.0803847</td>
+<td style="text-align:right">0.161095</td>
+<td style="text-align:right">0.0894974</td>
+<td style="text-align:right">0.438767</td>
+<td style="text-align:right">0.415727</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.2503</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.2513</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">2016</td>
+<td style="text-align:right">44</td>
+<td style="text-align:right">4.8</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">0.0680714</td>
+<td style="text-align:right">0.0749127</td>
+<td style="text-align:right">0.782357</td>
+<td style="text-align:right">0.150659</td>
+<td style="text-align:right">0.149429</td>
+<td style="text-align:right">0.114685</td>
+<td style="text-align:right">0.222329</td>
+<td style="text-align:right">0.442291</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3621</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3782</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">2006</td>
+<td style="text-align:right">57</td>
+<td style="text-align:right">7.7</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0.073</td>
+<td style="text-align:right">0.0795647</td>
+<td style="text-align:right">0.677917</td>
+<td style="text-align:right">0.234736</td>
+<td style="text-align:right">0.249167</td>
+<td style="text-align:right">0.185589</td>
+<td style="text-align:right">0.470967</td>
+<td style="text-align:right">0.343457</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.2622</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3241</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.2933</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.4796</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">2002</td>
+<td style="text-align:right">48</td>
+<td style="text-align:right">5.6</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">19</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">0.0549032</td>
+<td style="text-align:right">0.101778</td>
+<td style="text-align:right">0.813774</td>
+<td style="text-align:right">0.136019</td>
+<td style="text-align:right">0.131323</td>
+<td style="text-align:right">0.0995089</td>
+<td style="text-align:right">0.274816</td>
+<td style="text-align:right">0.465311</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">False</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.2505</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.2358</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<h1 id="visualizations">Visualizations</h1>
+<h3 id="number-of-movies">Number of movies</h3>
+<iframe width="120%" height="500" src="https://bbeat2782.github.io/DataSciencePortfolio/assets/project2/num_movie_by_year.html" frameBorder="0"></iframe>
+<h4 id="observations">Observations</h4>
+<ol>
+<li>Data were collected in 2023, June 16th, so 2023 has much fewer movies than years before.</li>
+<li>The early and mid-1900s have fewer movies than in recent years. This could be an actual difference in movie production or not all films are recorded from the early and mid-1900s.</li>
+<li>There are two noticeable declines. One starts in 2006. Another one starts in 2014.</li>
+</ol>
+<h3 id="number-of-reviews-comparison">Number of reviews comparison</h3>
+<iframe width="120%" height="500" src="https://bbeat2782.github.io/DataSciencePortfolio/assets/project2/num_reviews_comparison.html" frameBorder="0"></iframe>
+<h4 id="observations-1">Observations</h4>
+<ol>
+<li>The number of reviews increased around the 1990s. Three possible explanations are 1) the Internet became popular around mid-1990 2) the number of movies on the Metacritic website increases around mid-1990 or 3) the website was created in 1999.</li>
+<li>From 1999 to 2004, critics left more reviews than users. This trend changes after 2004.</li>
+<li>The critic reviews line plot follows the number of movies by year trend. However, the user reviews line plot tends to fluctuate more.</li>
+<li>Both line plots show a decline in 2020 (the year covid started). Between the two, the user line plot shows a larger decrease.</li>
+</ol>
+<h3 id="mean-rating-trend-comparison">Mean rating trend comparison</h3>
+<iframe width="120%" height="500" src="https://bbeat2782.github.io/DataSciencePortfolio/assets/project2/mean_ratings.html" frameBorder="0"></iframe>
+<h4 id="caution">Caution</h4>
+<p>User rating ranges from 0 to 10, whereas critic rating ranges from 0 to 100. Thus, to match the range, I multiplied user ratings by 10.</p>
+<h4 id="observations-2">Observations</h4>
+<ol>
+<li>Mean user rating tends to decline, whereas mean critic rating declines at first and increases after 2000.</li>
+<li>For movies before 1970, mean critic ratings tend to be higher than mean user ratings. However, after 1970, the trend reverses. This trend reverses again in 2020.
+<ul>
+<li>This could be because of how critics and users rate different genres differently and different genres were popular at different times. Or it could be because of a difference in what they value from watching a movie.</li>
+<li>Recall that not a lot of movies from the early 1900s are on the Metacritic website. It could be that only critically acclaimed movies are on the website such as <a href="https://www.metacritic.com/movie/citizen-kane-1941">Citizen Kane</a>, <a href="https://www.metacritic.com/movie/vertigo-1958">Vertigo</a>, or <a href="https://www.metacritic.com/movie/rear-window">Rear Window</a>. All these films have a rating of 100 out of 100 from critics but below 10 out of 10 from users. This might be the reason why mean critic ratings are higher than mean user ratings in the early 1900s.</li>
+</ul>
+</li>
+</ol>
+<h3 id="rating-distribution-comparison">Rating distribution comparison</h3>
+<iframe width="120%" height="500" src="https://bbeat2782.github.io/DataSciencePortfolio/assets/project2/rating_dist_comp.html" frameBorder="0"></iframe>
+<h4 id="observations-3">Observations</h4>
+<ol>
+<li>Critics rating distribution is closer to a normal distribution than users rating distribution.</li>
+<li>Users&rsquo; rating is skewed to the left with a higher overall mean than critics&rsquo; rating. For each user and critic, the overall means are 66.27 and 59.4</li>
+</ol>
+<h3 id="association-between-critic-and-user">Association between critic and user</h3>
+<iframe width="120%" height="500" src="https://bbeat2782.github.io/DataSciencePortfolio/assets/project2/positive_association.html" frameBorder="0"></iframe>
+<h4 id="observations-4">Observations</h4>
+<ol>
+<li>There is a positive association between critic and user ratings.</li>
+<li>The least squares best-fit line is <strong>User rating = 0.0357518 * Critic rating + 4.50315</strong>
+<ul>
+<li>For 1 increase in critic rating, we can expect user rating to increase by 0.0357518</li>
+</ul>
+</li>
+<li>It shows heteroscedasticity. The variability is higher when the critic rating is low than when it is high.</li>
+<li>The max user rating for all ranges of critic ratings tends to stay the same. However, the increase in the min user rating as the critic rating increases is clearly visible.</li>
+</ol>
+<h3 id="sentiment-analysis-for-combined-reviews-for-each-rating">Sentiment analysis for combined reviews for each rating</h3>
+<iframe width="120%" height="500" src="https://bbeat2782.github.io/DataSciencePortfolio/assets/project2/sentiment_line.html" frameBorder="0"></iframe>
+<h4 id="observations-5">Observations</h4>
+<ol>
+<li>Since I&rsquo;m looking at collective users&rsquo; ratings for each movie, the rating ranges from 0 to 10 with a 0.1 increment.</li>
+<li>The compound score starts from 0.4 at a rating of 0, decreases until a rating of around 2, and increases until a rating of 10.
+<ul>
+<li>This can be interpreted as movies that critics are positive about can be rated as 0 or 10 by users.</li>
+<li>Movies that critics are negative about tend to get a user rating between 1 and 2.5.</li>
+</ul>
+</li>
+</ol>
+<h1 id="prediction">Prediction</h1>
+<p>Performed hyperparameter tuning with <code>Optuna</code> using <code>lightgbm.LightGBMRegressor</code> as a model (<a href="https://github.com/bbeat2782/Projects/blob/rating_pred/rating_pred/predict.ipynb">notebook</a>).</p>
+<pre tabindex="0"><code>def objective(trial, data = X_train, target = y_train):
+    param_grid = {
+        &#34;n_estimators&#34;: trial.suggest_categorical(&#34;n_estimators&#34;, [10000]),
+        &#34;learning_rate&#34;: trial.suggest_float(&#34;learning_rate&#34;, 0.01, 0.3),
+        &#34;num_leaves&#34;: trial.suggest_int(&#34;num_leaves&#34;, 20, 2000, step=20),
+        &#34;max_depth&#34;: trial.suggest_int(&#34;max_depth&#34;, 3, 12),
+        &#34;max_bin&#34;: trial.suggest_int(&#34;max_bin&#34;, 200, 300),
+        &#34;reg_alpha&#34;: trial.suggest_int(&#34;reg_alpha&#34;, 0, 100, step=5),
+        &#34;reg_lambda&#34;: trial.suggest_int(&#34;reg_lambda&#34;, 0, 100, step=5),
+        &#34;min_split_gain&#34;: trial.suggest_float(&#34;min_split_gain&#34;, 0, 15),
+        &#34;subsample&#34;: trial.suggest_float(&#34;subsample&#34;, 0.2, 1.0, step=0.1),
+        &#34;colsample_bytree&#34;: trial.suggest_float(&#34;colsample_bytree&#34;, 0.2, 1.0, step=0.1),
+        &#34;min_child_samples&#34;: trial.suggest_int(&#34;min_child_samples&#34;, 1,500),
+    }
+
+    cv = KFold(n_splits=5, shuffle=True)
+    cv_scores = np.empty(5)
+
+    for idx, (train_idx, val_idx) in enumerate(cv.split(data, target)):
+        X_t, X_v = data.iloc[train_idx], data.iloc[val_idx]
+        y_t, y_v = target.iloc[train_idx], target.iloc[val_idx]
+
+        model = lgb.LGBMRegressor(**param_grid)
+        model.fit(X_t, y_t, eval_set=[(X_v, y_v)], eval_metric=&#39;mape&#39;,
+                  callbacks=[lgb.early_stopping(stopping_rounds=100),
+                             lgb.log_evaluation(period=0)])
+        preds = model.predict(X_v)
+        cv_scores[idx] = mean_absolute_error(y_v, preds)
+    
+    return np.mean(cv_scores)
+
+
+study = optuna.create_study(direction=&#39;minimize&#39;)
+study.optimize(objective, n_trials=300)
+</code></pre><h3 id="hyperparameter-tuning-process">Hyperparameter tuning process</h3>
+<iframe width="120%" height="500" src="https://bbeat2782.github.io/DataSciencePortfolio/assets/project2/plot_optimization_history.html" frameBorder="0"></iframe>
+<h3 id="feature-importance">Feature importance</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Feature</th>
+<th style="text-align:right">Importance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">movie_year</td>
+<td style="text-align:right">102</td>
+</tr>
+<tr>
+<td style="text-align:left">movie_critic_rating</td>
+<td style="text-align:right">83</td>
+</tr>
+<tr>
+<td style="text-align:left">num_critic_pos</td>
+<td style="text-align:right">43</td>
+</tr>
+<tr>
+<td style="text-align:left">num_critic_neg</td>
+<td style="text-align:right">28</td>
+</tr>
+<tr>
+<td style="text-align:left">mean_pos</td>
+<td style="text-align:right">26</td>
+</tr>
+<tr>
+<td style="text-align:left">mean_neu</td>
+<td style="text-align:right">23</td>
+</tr>
+<tr>
+<td style="text-align:left">std_pos</td>
+<td style="text-align:right">21</td>
+</tr>
+<tr>
+<td style="text-align:left">mean_compound</td>
+<td style="text-align:right">18</td>
+</tr>
+<tr>
+<td style="text-align:left">&hellip;</td>
+<td style="text-align:right">&hellip;</td>
+</tr>
+<tr>
+<td style="text-align:left">Family</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td style="text-align:left">Unrated</td>
+<td style="text-align:right">1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="predicted-result">Predicted result</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">True</th>
+<th style="text-align:right">Predict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">6.63514</td>
+</tr>
+<tr>
+<td style="text-align:right">7.8</td>
+<td style="text-align:right">7.36846</td>
+</tr>
+<tr>
+<td style="text-align:right">6.7</td>
+<td style="text-align:right">6.92814</td>
+</tr>
+<tr>
+<td style="text-align:right">6.2</td>
+<td style="text-align:right">6.42496</td>
+</tr>
+<tr>
+<td style="text-align:right">&hellip;</td>
+<td style="text-align:right">&hellip;</td>
+</tr>
+<tr>
+<td style="text-align:right">4.9</td>
+<td style="text-align:right">5.79924</td>
+</tr>
+<tr>
+<td style="text-align:right">6.3</td>
+<td style="text-align:right">5.84634</td>
+</tr>
+<tr>
+<td style="text-align:right">6.3</td>
+<td style="text-align:right">7.45201</td>
+</tr>
+</tbody>
+</table>
+<p>Mean absolute error when treating user rating is equal to critic rating</p>
+<pre tabindex="0"><code>print(mean_absolute_error(user, critic))
+
+&gt;&gt;&gt; 1.368877016551435
+</code></pre><p>Mean absolute error for the test dataset</p>
+<pre tabindex="0"><code>model = lgb.LGBMRegressor(**best_trial, early_stopping_rounds=100)
+model.fit(X_train, y_train, eval_set=[(X_val, y_val)],
+          callbacks=[lgb.log_evaluation(period=0)])
+y_pred = model.predict(X_test)
+print(mean_absolute_error(y_test, y_pred))
+
+&gt;&gt;&gt; 0.8530118478423075
+</code></pre><p>As a result of feature engineering and hyperparameter tuning, I&rsquo;m able to predict the user rating of a movie with critic reviews with a 0.853 mean absolute error. It is a 37.69% improvement compared to believing the user rating is equal to the critic rating.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://bbeat2782.github.io/DataSciencePortfolio/" >
+    &copy;  SangGyu An 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    
+    <a href="https://github.com/bbeat2782" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.linkedin.com/in/sanggyu-an-704104126/" target="_blank" rel="noopener" class="linkedin ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" aria-label="follow on LinkedIn——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://medium.com/@bbeat2782" target="_blank" rel="noopener" class="medium ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Medium link" aria-label="follow on Medium——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 170 170;" version="1.1" viewBox="0 0 170 170"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M46.5340803,65.2157554 C46.6968378,63.6076572 46.0836,62.018231 44.8828198,60.93592 L32.6512605,46.2010582 L32.6512605,44 L70.6302521,44 L99.9859944,108.380952 L125.794585,44 L162,44 L162,46.2010582 L151.542017,56.2281011 C150.640424,56.9153477 150.193188,58.0448862 150.380019,59.1628454 L150.380019,132.837155 C150.193188,133.955114 150.640424,135.084652 151.542017,135.771899 L161.755369,145.798942 L161.755369,148 L110.38282,148 L110.38282,145.798942 L120.963119,135.527337 C122.002801,134.487948 122.002801,134.182246 122.002801,132.592593 L122.002801,73.0417402 L92.585901,147.755438 L88.6106443,147.755438 L54.3622782,73.0417402 L54.3622782,123.115814 C54.0767278,125.221069 54.7759199,127.3406 56.2581699,128.863022 L70.0186741,145.55438 L70.0186741,147.755438 L31,147.755438 L31,145.55438 L44.7605042,128.863022 C46.2319621,127.338076 46.8903838,125.204485 46.5340803,123.115814 L46.5340803,65.2157554 Z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
