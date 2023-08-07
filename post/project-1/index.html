@@ -33,12 +33,12 @@
 <meta property="og:description" content="Using Tableau for analyzing San Diego County Collision since 2016" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://bbeat2782.github.io/DataSciencePortfolio/post/project-1/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-05-01T10:58:08-04:00" />
-<meta property="article:modified_time" content="2023-05-01T10:58:08-04:00" />
+<meta property="article:published_time" content="2023-05-23T10:58:08-04:00" />
+<meta property="article:modified_time" content="2023-05-23T10:58:08-04:00" />
 <meta itemprop="name" content="Project 1: San Diego Collision EDA">
-<meta itemprop="description" content="Using Tableau for analyzing San Diego County Collision since 2016"><meta itemprop="datePublished" content="2023-05-01T10:58:08-04:00" />
-<meta itemprop="dateModified" content="2023-05-01T10:58:08-04:00" />
-<meta itemprop="wordCount" content="701">
+<meta itemprop="description" content="Using Tableau for analyzing San Diego County Collision since 2016"><meta itemprop="datePublished" content="2023-05-23T10:58:08-04:00" />
+<meta itemprop="dateModified" content="2023-05-23T10:58:08-04:00" />
+<meta itemprop="wordCount" content="595">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Project 1: San Diego Collision EDA"/>
 <meta name="twitter:description" content="Using Tableau for analyzing San Diego County Collision since 2016"/>
@@ -160,26 +160,25 @@
       
       
       
-      <time class="f6 mv4 dib tracked" datetime="2023-05-01T10:58:08-04:00">May 1, 2023</time>
+      <time class="f6 mv4 dib tracked" datetime="2023-05-23T10:58:08-04:00">May 23, 2023</time>
       
 
       
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="why-it-matters">Why it matters?</h1>
-<p>In Korea, a car navigation system notifies me whenever I enter an &ldquo;accident-prone area&rdquo;. This especially helped me to stay alert in those areas so that I don&rsquo;t get into an accident. However, as far as I know, there is no such service in a navigation system in the US. Thus, I was curious about what areas in San Diego are &ldquo;accident-prone areas&rdquo; so that I and other drivers in San Diego need to be extra cautious while driving.</p>
-<p>On top of that, as an inexperienced driver, I was always told in Korea that lane change is the hardest task. I found this is true for myself since it was hard to be inside a lane and know the exact timing of when to tilt a handle so that I don&rsquo;t crash with a car behind me. However, one of the reasons for this is that Korea has narrow lanes. Since lanes in the US aren&rsquo;t as narrow as those in Korea, I wanted to explore whether lane change is also the main cause of car collisions or if there are other actions I need to be more cautious of.</p>
+<p>In Korea, car navigation systems notify drivers when they enter &lsquo;accident-prone areas,&rsquo; helping them stay alert and avoid potential accidents. However, similar services are not commonly available in navigation systems in the US. As a result, I became curious about identifying accident-prone areas in San Diego to raise awareness when I drive in the future.</p>
+<p>Moreover, as an inexperienced driver, I have been told lane changes are the most challenging task when driving in Korea, partly due to narrow lanes. With the wider lanes in the US, I am interested in investigating whether lane changes are still the most challenging task or if other actions demand greater caution.</p>
 <h1 id="overview">Overview</h1>
 <ul>
-<li>Grabbed original dataset from City of San Diego Open Data Portal, <a href="https://data.sandiego.gov/datasets/police-collisions/">Traffic Collisions - basic reports</a> and <a href="https://data.sandiego.gov/datasets/police-beats/">Police Beats</a> and grid map of San Diego from <a href="https://www.sangis.org/">SanGis</a></li>
-<li>Applied geocoding to unique addresses using Python and Google Geocoding API and stored in SQLite database</li>
-<li>Engineered features from the text of each unique charge description to group them into larger categories</li>
-<li>Created interactive visualization with Tableau so that viewers can look at specific location in San Diego County</li>
+<li>Used <a href="https://data.sandiego.gov/datasets/police-collisions/">Traffic Collisions - basic reports</a> and <a href="https://data.sandiego.gov/datasets/police-beats/">Police Beats</a> from City of San Diego Open Data Portal and grid map of San Diego from <a href="https://www.sangis.org/">SanGis</a></li>
+<li>Applied geocoding to unique addresses using Python and Google Geocoding API and stored them in SQLite database</li>
+<li>Created interactive visualization with Tableau so that viewers can look at specific locations in San Diego County</li>
 </ul>
 <h1 id="data-collection">Data Collection</h1>
 <h3 id="original-dataset">Original dataset</h3>
 <h4 id="1-traffic-collisions---basic-reports">1. Traffic Collisions - basic reports</h4>
-<p>The following is a sample rows from the dataset that contains record from 2015 January to 2023 May. It&rsquo;s downloaded from City of San Diego Open Data Portal, and it updates daily.</p>
+<p>The following are sample rows from the dataset that contains records from 2015 January to 2023 May. It’s downloaded from the City of San Diego Open Data Portal.</p>
 <table>
 <thead>
 <tr>
@@ -277,7 +276,7 @@
 </tbody>
 </table>
 <h4 id="2-police-beats">2. Police Beats</h4>
-<p>The following is a mapping of <em>police_beat</em> values from the above dataset into neighbor names in San Diego. It also contains the shp files of each neighbors.</p>
+<p>The following are the mapping of <em>police_beat</em> values from the above dataset into neighbor names in San Diego. It also contains the shp files of each neighbor.</p>
 <table>
 <thead>
 <tr>
@@ -312,7 +311,7 @@
 </figure>
 
 <h4 id="3-grid-map-of-san-diego">3. Grid Map of San Diego</h4>
-<p>The following is a sub grid of the Regional Public Safety Geodatabase&rsquo;s Public Safety Grid. Each grid is about 0.3 miles * 0.6 miles (width * height).</p>
+<p>The following is a sub-grid of the Regional Public Safety Geodatabase&rsquo;s Public Safety Grid. Each grid is about 0.3 miles * 0.6 miles (width * height).</p>
 <figure><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project1/sd_grid.png"/>
 </figure>
 
@@ -323,7 +322,7 @@
 
 <h1 id="data-cleaning">Data Cleaning</h1>
 <h3 id="1-charge_desc-mapping">1. charge_desc Mapping</h3>
-<p>Because charge_desc (charge description) values in the <strong>Traffic Collisions - basic reports</strong> are hand recorded by different police officers, different abbreviations and wordings are used throughout the rows. Thus, I needed to group them into higher level categories. Below is a sample mapping.</p>
+<p>Because <em>charge_desc</em> (charge description) values in the <strong>Traffic Collisions - basic reports</strong> are hand recorded by different police officers, different abbreviations and wordings are used throughout the rows. Thus, I needed to group them into higher-level categories. Below is a sample mapping.</p>
 <table>
 <thead>
 <tr>
@@ -355,15 +354,18 @@
 </tbody>
 </table>
 <h3 id="2-geocoding-cleaning">2. Geocoding Cleaning</h3>
-<p>Google Geocoding API were unable to locate some addresses due to incorrect address and unable to understanding Spanish abbreviations of address such as CAM for Camino and CMT for Caminito. Thus, I needed to confirm those by hand.</p>
+<p>Google Geocoding API was unable to locate some addresses due to incorrect addresses and interpret Spanish abbreviations such as CAM for Camino and CMT for Caminito. Thus, I needed to confirm those by hand.</p>
 <h3 id="3-shape-file-cleaning">3. Shape File Cleaning</h3>
-<p>Since I&rsquo;m only interested in collisions in San Diego, I used the shp file from <strong>Police Beats</strong> to only extract grids that overlap with polygons from <strong>Police Beats</strong></p>
+<p>Since I&rsquo;m only interested in collisions in San Diego, I used the shp file from <strong>Police Beats</strong> to only extract grids that overlap with polygons from <strong>Police Beats</strong>.</p>
 <pre tabindex="0"><code># using intersects() from geopandas
 extract_necessary_grids = [np.any(police_beat[&#39;geometry&#39;].intersects(g)) 
                                 for g in sd_grid[&#39;geometry&#39;]]
 sd_grid_trim = sd_grid[extract_necessary_grids]
 </code></pre><h1 id="visualization">Visualization</h1>
-<figure><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project1/tableau_dashboard.png"/>
+<figure class="fl"><a href="https://public.tableau.com/app/profile/sanggyu.an/viz/SanDiegoCollisionSummary/Dashboard1"><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project1/tableau_dashboard.png"/></a><figcaption>
+            <p>
+                    <a href="https://public.tableau.com/app/profile/sanggyu.an/viz/SanDiegoCollisionSummary/Dashboard1">Link to Tableau</a></p>
+        </figcaption>
 </figure>
 
 <ul class="pa0">

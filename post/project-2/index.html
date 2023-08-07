@@ -38,7 +38,7 @@
 <meta itemprop="name" content="Project 2: Metacritic User Rating Prediction">
 <meta itemprop="description" content="Predicting MetaCritic user ratings with data available before movies are released"><meta itemprop="datePublished" content="2023-07-15T11:00:59-04:00" />
 <meta itemprop="dateModified" content="2023-07-15T11:00:59-04:00" />
-<meta itemprop="wordCount" content="2770">
+<meta itemprop="wordCount" content="2786">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Project 2: Metacritic User Rating Prediction"/>
 <meta name="twitter:description" content="Predicting MetaCritic user ratings with data available before movies are released"/>
@@ -167,14 +167,15 @@
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="why-it-matters">Why it matters?</h1>
-<p>Oftentimes, you see a bad review of a movie from critics and think that you won&rsquo;t enjoy the movie. However, when you go to a theater and watch the movie for yourself, you find out you actually enjoy the movie. This happened to me when I watched <a href="https://www.metacritic.com/movie/extraction-2">Extraction 2</a>, <a href="https://www.metacritic.com/movie/transformers-rise-of-the-beasts">Transformers: Rise of the Beasts</a>, and <a href="https://www.metacritic.com/movie/guardians-of-the-galaxy-vol-3">Guardians of the Galaxy Vol. 3</a>. The opposite situation also happened and sometimes, critic ratings are similar to user ratings such as <a href="https://www.metacritic.com/movie/fast-x">Fast X</a> and <a href="https://www.metacritic.com/movie/john-wick-chapter-4">John Wick 4</a>.</p>
-<p>So it seems like critics and users rate the same movie differently, and that leads to different overall ratings. It makes sense because while users generally watch movies for enjoyment, critics expect movies to be a masterpiece in terms of art. Thus, if users solely believe in what critics say about a movie and watch it, they might not get what they want from watching the movie. So what if we can predict users&rsquo; ratings with text features from critic reviews? If this is possible, users will have a better understanding of what to expect from movies better than before.</p>
+<p>Oftentimes, you see a bad review of a movie from critics and think that you won&rsquo;t enjoy the movie. However, when you go to a theater and watch the movie for yourself, you find out you actually enjoy the movie more than you thought. This happened to me when I watched <a href="https://www.metacritic.com/movie/extraction-2">Extraction 2</a>, <a href="https://www.metacritic.com/movie/transformers-rise-of-the-beasts">Transformers: Rise of the Beasts</a>, and <a href="https://www.metacritic.com/movie/guardians-of-the-galaxy-vol-3">Guardians of the Galaxy Vol. 3</a>. The opposite situation also happened, and sometimes, critic ratings are similar to user ratings such as <a href="https://www.metacritic.com/movie/fast-x">Fast X</a> and <a href="https://www.metacritic.com/movie/john-wick-chapter-4">John Wick 4</a>.</p>
+<p>So it seems like critics and users rate the same movie differently, and that leads to different overall ratings. It makes sense because while users generally watch movies for enjoyment, critics rate movies in terms of art. Thus, if users solely believe in what critics say about a movie and watch it, they might not get what they want from watching the movie.</p>
+<p>What if we can predict users&rsquo; ratings with text features from critic reviews? If this is possible, this could empower users to make more informed decisions about which movies to watch, ultimately giving them a better cinematic experience.</p>
 <h1 id="overview">Overview</h1>
 <ul>
-<li>Websraped movie info, critic reviews, and user reviews from <a href="https://www.metacritic.com/movie">Metacritic</a> using Python <code>BeautifulSoup</code> and stored in <code>SQLite</code> database.</li>
+<li>Websraped movie info, critic reviews, and user reviews from <a href="https://www.metacritic.com/movie">Metacritic</a> website using <code>BeautifulSoup</code> with Python and stored in <code>SQLite</code> database.</li>
 <li>Extracted text sentiment features using <code>nltk.sentiment.SentimentIntensityAnalyzer</code> and keywords using <code>KeyBERT</code>.</li>
-<li>Analyzed scraped data using <code>plotly</code>.</li>
-<li>Improved mean absolute error by 37.69% when predicting user rating using features from critic reviews compared to assuming user ratings are equal to critic ratings.</li>
+<li>Analyzed scraped data using <code>plotly</code> to analyze trends associated with user ratings.</li>
+<li>Improved mean absolute error by <code>37.69%</code> when predicting user rating using features from critic reviews compared to assuming user ratings are equal to critic ratings.</li>
 </ul>
 <h1 id="data-collection">Data Collection</h1>
 <p>Webscraped using this <a href="https://github.com/bbeat2782/Projects/blob/rating_pred/rating_pred/collect_ratings.ipynb">script</a>.</p>
@@ -425,7 +426,7 @@ kw = kw_model.extract_keywords(corpus,
 </code></pre><p>From the code block above,</p>
 <ul>
 <li><code>keyphrase_ngram_range</code>: Controls the ngram range of extracted keywords</li>
-<li><code>use_maxsum</code>: Controls the combination of the sum of cosine similarity to be the maximum value from 2 x top_n words to diversify the results</li>
+<li><code>use_maxsum</code>: Controls the combination of words from 2 x top_n words so that sum of cosine similarity becomes the maximum value to diversify the result</li>
 <li><code>top_n</code> : Controls the number of keywords to extract</li>
 </ul>
 <h3 id="final-dataframe-after-preprocessing">Final Dataframe after Preprocessing</h3>
@@ -1644,7 +1645,8 @@ kw = kw_model.extract_keywords(corpus,
 <ol>
 <li>The number of reviews increased around the 1990s. Three possible explanations are 1) the Internet became popular around mid-1990 2) the number of movies on the Metacritic website increases around mid-1990 or 3) the website was created in 1999.</li>
 <li>From 1999 to 2004, critics left more reviews than users. This trend changes after 2004.</li>
-<li>The critic reviews line plot follows the number of movies by year trend. However, the user reviews line plot tends to fluctuate more.</li>
+<li>The critic reviews line plot follows the number of movies by year trend.</li>
+<li>The user reviews line plot tends to fluctuate more.</li>
 <li>Both line plots show a decline in 2020 (the year covid started). Between the two, the user line plot shows a larger decrease.</li>
 </ol>
 <h3 id="mean-rating-trend-comparison">Mean rating trend comparison</h3>
@@ -1666,14 +1668,14 @@ kw = kw_model.extract_keywords(corpus,
 <h4 id="observations-3">Observations</h4>
 <ol>
 <li>Critics rating distribution is closer to a normal distribution than users rating distribution.</li>
-<li>Users&rsquo; rating is skewed to the left with a higher overall mean than critics&rsquo; rating. For each user and critic, the overall means are 66.27 and 59.4</li>
+<li>Users&rsquo; rating is skewed to the left with a higher overall mean than critics&rsquo; rating. For each user and critic, the overall means are 66.27 and 59.4.</li>
 </ol>
 <h3 id="association-between-critic-and-user">Association between critic and user</h3>
 <iframe width="120%" height="500" src="https://bbeat2782.github.io/DataSciencePortfolio/assets/project2/positive_association.html" frameBorder="0"></iframe>
 <h4 id="observations-4">Observations</h4>
 <ol>
 <li>There is a positive association between critic and user ratings.</li>
-<li>The least squares best-fit line is <strong>User rating = 0.0357518 * Critic rating + 4.50315</strong>
+<li>The least squares best-fit line is <strong>User rating = 0.0357518 x Critic rating + 4.50315</strong>
 <ul>
 <li>For 1 increase in critic rating, we can expect user rating to increase by 0.0357518</li>
 </ul>
@@ -1685,7 +1687,7 @@ kw = kw_model.extract_keywords(corpus,
 <iframe width="120%" height="500" src="https://bbeat2782.github.io/DataSciencePortfolio/assets/project2/sentiment_line.html" frameBorder="0"></iframe>
 <h4 id="observations-5">Observations</h4>
 <ol>
-<li>Since I&rsquo;m looking at collective users&rsquo; ratings for each movie, the rating ranges from 0 to 10 with a 0.1 increment.</li>
+<li>Since the plot is about collective users&rsquo; ratings for each movie, the rating ranges from 0 to 10 with a 0.1 increment.</li>
 <li>The compound score starts from 0.4 at a rating of 0, decreases until a rating of around 2, and increases until a rating of 10.
 <ul>
 <li>This can be interpreted as movies that critics are positive about can be rated as 0 or 10 by users.</li>
@@ -1841,7 +1843,7 @@ y_pred = model.predict(X_test)
 print(mean_absolute_error(y_test, y_pred))
 
 &gt;&gt;&gt; 0.8530118478423075
-</code></pre><p>As a result of feature engineering and hyperparameter tuning, I&rsquo;m able to predict the user rating of a movie with critic reviews with a 0.853 mean absolute error. It is a 37.69% improvement compared to believing the user rating is equal to the critic rating.</p>
+</code></pre><p>As a result of feature engineering and hyperparameter tuning, I&rsquo;m able to predict the user rating of a movie with critic reviews with a 0.853 mean absolute error. It is about a <strong>37.69% improvement</strong> compared to believing the user rating is equal to the critic rating.</p>
 <ul class="pa0">
   
 </ul>

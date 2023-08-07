@@ -13,16 +13,17 @@
       <pubDate>Sat, 15 Jul 2023 11:00:59 -0400</pubDate>
       
       <guid>https://bbeat2782.github.io/DataSciencePortfolio/post/project-2/</guid>
-      <description>Why it matters? Oftentimes, you see a bad review of a movie from critics and think that you won&amp;rsquo;t enjoy the movie. However, when you go to a theater and watch the movie for yourself, you find out you actually enjoy the movie. This happened to me when I watched Extraction 2, Transformers: Rise of the Beasts, and Guardians of the Galaxy Vol. 3. The opposite situation also happened and sometimes, critic ratings are similar to user ratings such as Fast X and John Wick 4.</description>
+      <description>Why it matters? Oftentimes, you see a bad review of a movie from critics and think that you won&amp;rsquo;t enjoy the movie. However, when you go to a theater and watch the movie for yourself, you find out you actually enjoy the movie more than you thought. This happened to me when I watched Extraction 2, Transformers: Rise of the Beasts, and Guardians of the Galaxy Vol. 3. The opposite situation also happened, and sometimes, critic ratings are similar to user ratings such as Fast X and John Wick 4.</description>
     </item>
     
     <item>
       <title>Project 1: San Diego Collision EDA</title>
       <link>https://bbeat2782.github.io/DataSciencePortfolio/post/project-1/</link>
-      <pubDate>Mon, 01 May 2023 10:58:08 -0400</pubDate>
+      <pubDate>Tue, 23 May 2023 10:58:08 -0400</pubDate>
       
       <guid>https://bbeat2782.github.io/DataSciencePortfolio/post/project-1/</guid>
-      <description>Why it matters? In Korea, a car navigation system notifies me whenever I enter an &amp;ldquo;accident-prone area&amp;rdquo;. This especially helped me to stay alert in those areas so that I don&amp;rsquo;t get into an accident. However, as far as I know, there is no such service in a navigation system in the US. Thus, I was curious about what areas in San Diego are &amp;ldquo;accident-prone areas&amp;rdquo; so that I and other drivers in San Diego need to be extra cautious while driving.</description>
+      <description>Why it matters? In Korea, car navigation systems notify drivers when they enter &amp;lsquo;accident-prone areas,&amp;rsquo; helping them stay alert and avoid potential accidents. However, similar services are not commonly available in navigation systems in the US. As a result, I became curious about identifying accident-prone areas in San Diego to raise awareness when I drive in the future.
+Moreover, as an inexperienced driver, I have been told lane changes are the most challenging task when driving in Korea, partly due to narrow lanes.</description>
     </item>
     
   </channel>
