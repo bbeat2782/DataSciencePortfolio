@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Project 3: Workout Song Classification | SangGyu An</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Classifying songs using Logistic Regression and Spotify API &amp; updating a YouTube playlist using YouTube Data API">
+    <meta name="generator" content="Hugo 0.115.2">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="https://bbeat2782.github.io/DataSciencePortfolio/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Project 3: Workout Song Classification" />
+<meta property="og:description" content="Classifying songs using Logistic Regression and Spotify API &amp; updating a YouTube playlist using YouTube Data API" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bbeat2782.github.io/DataSciencePortfolio/post/project-3/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-09-29T11:00:59-04:00" />
+<meta property="article:modified_time" content="2023-09-29T11:00:59-04:00" />
+<meta itemprop="name" content="Project 3: Workout Song Classification">
+<meta itemprop="description" content="Classifying songs using Logistic Regression and Spotify API &amp; updating a YouTube playlist using YouTube Data API"><meta itemprop="datePublished" content="2023-09-29T11:00:59-04:00" />
+<meta itemprop="dateModified" content="2023-09-29T11:00:59-04:00" />
+<meta itemprop="wordCount" content="1369">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Project 3: Workout Song Classification"/>
+<meta name="twitter:description" content="Classifying songs using Logistic Regression and Spotify API &amp; updating a YouTube playlist using YouTube Data API"/>
+
+	
+  <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  <header class="cover bg-top" style="background-image: url('https://bbeat2782.github.io/DataSciencePortfolio/images/project3/main.jpg');">
+    <div class="bg-black-80">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://bbeat2782.github.io/DataSciencePortfolio/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        SangGyu An
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://bbeat2782.github.io/DataSciencePortfolio/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://bbeat2782.github.io/DataSciencePortfolio/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://bbeat2782.github.io/DataSciencePortfolio/post/" title="Projects page">
+              Projects
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+    
+    <a href="https://github.com/bbeat2782" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.linkedin.com/in/sanggyu-an-704104126/" target="_blank" rel="noopener" class="linkedin ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" aria-label="follow on LinkedIn——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://medium.com/@bbeat2782" target="_blank" rel="noopener" class="medium ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Medium link" aria-label="follow on Medium——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 170 170;" version="1.1" viewBox="0 0 170 170"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M46.5340803,65.2157554 C46.6968378,63.6076572 46.0836,62.018231 44.8828198,60.93592 L32.6512605,46.2010582 L32.6512605,44 L70.6302521,44 L99.9859944,108.380952 L125.794585,44 L162,44 L162,46.2010582 L151.542017,56.2281011 C150.640424,56.9153477 150.193188,58.0448862 150.380019,59.1628454 L150.380019,132.837155 C150.193188,133.955114 150.640424,135.084652 151.542017,135.771899 L161.755369,145.798942 L161.755369,148 L110.38282,148 L110.38282,145.798942 L120.963119,135.527337 C122.002801,134.487948 122.002801,134.182246 122.002801,132.592593 L122.002801,73.0417402 L92.585901,147.755438 L88.6106443,147.755438 L54.3622782,73.0417402 L54.3622782,123.115814 C54.0767278,125.221069 54.7759199,127.3406 56.2581699,128.863022 L70.0186741,145.55438 L70.0186741,147.755438 L31,147.755438 L31,145.55438 L44.7605042,128.863022 C46.2319621,127.338076 46.8903838,125.204485 46.5340803,123.115814 L46.5340803,65.2157554 Z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Project 3: Workout Song Classification</div>
+          
+            <div class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              Classifying songs using Logistic Regression and Spotify API &amp; updating a YouTube playlist using YouTube Data API
+            </div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <h1 class="f1 athelas mt3 mb1">Project 3: Workout Song Classification</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2023-09-29T11:00:59-04:00">September 29, 2023</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="why-it-matters">Why it matters?</h1>
+<p>Listening to music on YouTube has become an integral part of my life, yet a challenge persists. The music I prefer during workouts differs from my regular listening choices. However, the YouTube recommendation system fails to recognize this difference, resulting in the need to frequently switch songs between my workout sets.</p>
+<p>To address this, I decided to create my own music classifier. By accomplishing this, I expect the distraction of changing songs diminishes, allowing me to focus more on my workout routine and utilize the time saved on song selection more effectively.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li>Labeled 1300+ songs into 3 categories and collected audio feature data using Spotify API in python</li>
+<li>Applied feature engineering and Principal Component Analysis to create a dataset of 114 features</li>
+<li>Achieved f1 weighted score of 0.68 using a logistic regression model</li>
+<li>Created a workflow to <a href="https://github.com/bbeat2782/Projects/blob/main/song_clf/util.py#L572">add new songs</a> in a sqlite3 database and <a href="https://github.com/bbeat2782/Projects/blob/main/song_clf/generate_playlist.py">update YouTube playlist automatically</a> using Youtube API and sqlite3 database</li>
+</ul>
+<h1 id="data-collection">Data Collection</h1>
+<p>First, I labeled 1300+ songs into 3 categories on my Spotify account. The 3 categories are Workout, Non-workout, and Dislike.</p>
+<figure><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project3/spotify.png"/>
+</figure>
+
+<p>Then, <a href="https://github.com/bbeat2782/Projects/blob/main/song_clf/util.py#L429">using the Spotify API</a>, I collected tracks&rsquo; audio features and created a dataframe.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">danceability</th>
+<th style="text-align:right">energy</th>
+<th style="text-align:right">key</th>
+<th style="text-align:right">loudness</th>
+<th style="text-align:right">mode</th>
+<th style="text-align:right">speechiness</th>
+<th style="text-align:right">acousticness</th>
+<th style="text-align:right">instrumentalness</th>
+<th style="text-align:right">liveness</th>
+<th style="text-align:right">valence</th>
+<th style="text-align:right">tempo</th>
+<th style="text-align:left">type</th>
+<th style="text-align:left">id</th>
+<th style="text-align:left">uri</th>
+<th style="text-align:left">track_href</th>
+<th style="text-align:left">analysis_url</th>
+<th style="text-align:right">duration_ms</th>
+<th style="text-align:right">time_signature</th>
+<th style="text-align:left">result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0.644</td>
+<td style="text-align:right">0.414</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">-6.723</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0.0419</td>
+<td style="text-align:right">0.64</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.11</td>
+<td style="text-align:right">0.273</td>
+<td style="text-align:right">132.117</td>
+<td style="text-align:left">audio_features</td>
+<td style="text-align:left">2H1kS1ZOSTTPAFYUKjRiGo</td>
+<td style="text-align:left">spotify:track:2H1kS1ZOSTTPAFYUKjRiGo</td>
+<td style="text-align:left"><a href="https://api.spotify.com/v1/tracks/2H1kS1ZOSTTPAFYUKjRiGo">https://api.spotify.com/v1/tracks/2H1kS1ZOSTTPAFYUKjRiGo</a></td>
+<td style="text-align:left"><a href="https://api.spotify.com/v1/audio-analysis/2H1kS1ZOSTTPAFYUKjRiGo">https://api.spotify.com/v1/audio-analysis/2H1kS1ZOSTTPAFYUKjRiGo</a></td>
+<td style="text-align:right">234875</td>
+<td style="text-align:right">4</td>
+<td style="text-align:left">Nonworkout</td>
+</tr>
+<tr>
+<td style="text-align:right">0.773</td>
+<td style="text-align:right">0.628</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">-5.095</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0.145</td>
+<td style="text-align:right">0.0543</td>
+<td style="text-align:right">1.2e-05</td>
+<td style="text-align:right">0.0725</td>
+<td style="text-align:right">0.42</td>
+<td style="text-align:right">77.502</td>
+<td style="text-align:left">audio_features</td>
+<td style="text-align:left">3K7WdPYz7vcHMCsyBjK9vL</td>
+<td style="text-align:left">spotify:track:3K7WdPYz7vcHMCsyBjK9vL</td>
+<td style="text-align:left"><a href="https://api.spotify.com/v1/tracks/3K7WdPYz7vcHMCsyBjK9vL">https://api.spotify.com/v1/tracks/3K7WdPYz7vcHMCsyBjK9vL</a></td>
+<td style="text-align:left"><a href="https://api.spotify.com/v1/audio-analysis/3K7WdPYz7vcHMCsyBjK9vL">https://api.spotify.com/v1/audio-analysis/3K7WdPYz7vcHMCsyBjK9vL</a></td>
+<td style="text-align:right">177653</td>
+<td style="text-align:right">4</td>
+<td style="text-align:left">Workout</td>
+</tr>
+<tr>
+<td style="text-align:right">0.516</td>
+<td style="text-align:right">0.768</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">-4.964</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0.0362</td>
+<td style="text-align:right">0.00852</td>
+<td style="text-align:right">8.49e-06</td>
+<td style="text-align:right">0.136</td>
+<td style="text-align:right">0.204</td>
+<td style="text-align:right">115.005</td>
+<td style="text-align:left">audio_features</td>
+<td style="text-align:left">46bkeaB7DA45q7PdKWLFkR</td>
+<td style="text-align:left">spotify:track:46bkeaB7DA45q7PdKWLFkR</td>
+<td style="text-align:left"><a href="https://api.spotify.com/v1/tracks/46bkeaB7DA45q7PdKWLFkR">https://api.spotify.com/v1/tracks/46bkeaB7DA45q7PdKWLFkR</a></td>
+<td style="text-align:left"><a href="https://api.spotify.com/v1/audio-analysis/46bkeaB7DA45q7PdKWLFkR">https://api.spotify.com/v1/audio-analysis/46bkeaB7DA45q7PdKWLFkR</a></td>
+<td style="text-align:right">241427</td>
+<td style="text-align:right">4</td>
+<td style="text-align:left">Workout</td>
+</tr>
+<tr>
+<td style="text-align:right">0.77</td>
+<td style="text-align:right">0.54</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">-9.087</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0.0325</td>
+<td style="text-align:right">0.0347</td>
+<td style="text-align:right">1.49e-05</td>
+<td style="text-align:right">0.0326</td>
+<td style="text-align:right">0.804</td>
+<td style="text-align:right">89.989</td>
+<td style="text-align:left">audio_features</td>
+<td style="text-align:left">7yLtWtDPEC1zZpvNpbE4UA</td>
+<td style="text-align:left">spotify:track:7yLtWtDPEC1zZpvNpbE4UA</td>
+<td style="text-align:left"><a href="https://api.spotify.com/v1/tracks/7yLtWtDPEC1zZpvNpbE4UA">https://api.spotify.com/v1/tracks/7yLtWtDPEC1zZpvNpbE4UA</a></td>
+<td style="text-align:left"><a href="https://api.spotify.com/v1/audio-analysis/7yLtWtDPEC1zZpvNpbE4UA">https://api.spotify.com/v1/audio-analysis/7yLtWtDPEC1zZpvNpbE4UA</a></td>
+<td style="text-align:right">214000</td>
+<td style="text-align:right">4</td>
+<td style="text-align:left">Workout</td>
+</tr>
+<tr>
+<td style="text-align:right">0.425</td>
+<td style="text-align:right">0.638</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">-3.184</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.0759</td>
+<td style="text-align:right">0.426</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.177</td>
+<td style="text-align:right">0.45</td>
+<td style="text-align:right">81.396</td>
+<td style="text-align:left">audio_features</td>
+<td style="text-align:left">3590AAEoqH50z4UmhMIY85</td>
+<td style="text-align:left">spotify:track:3590AAEoqH50z4UmhMIY85</td>
+<td style="text-align:left"><a href="https://api.spotify.com/v1/tracks/3590AAEoqH50z4UmhMIY85">https://api.spotify.com/v1/tracks/3590AAEoqH50z4UmhMIY85</a></td>
+<td style="text-align:left"><a href="https://api.spotify.com/v1/audio-analysis/3590AAEoqH50z4UmhMIY85">https://api.spotify.com/v1/audio-analysis/3590AAEoqH50z4UmhMIY85</a></td>
+<td style="text-align:right">230667</td>
+<td style="text-align:right">4</td>
+<td style="text-align:left">Dislike</td>
+</tr>
+</tbody>
+</table>
+<h1 id="visualizations">Visualizations</h1>
+<h3 id="imbalanced-target-distribution">Imbalanced target distribution</h3>
+<iframe width="120%" height="500" src="https://bbeat2782.github.io/DataSciencePortfolio/assets/project3/imbalanced_target_distribution.html" frameBorder="0"></iframe>
+<h4 id="observations">Observations</h4>
+<ol>
+<li>Workout has the most songs, whereas dislike has the least.
+<ul>
+<li>One of the reasons is that I&rsquo;m more familiar with songs I enjoy, and that led to identifying songs I dislike the least.</li>
+<li>Need to take this into consideration when predicting to avoid classifying all songs into the dominant class.</li>
+</ul>
+</li>
+</ol>
+<h3 id="single-variable-distribution">Single variable distribution</h3>
+<iframe width="120%" height="500" src="https://bbeat2782.github.io/DataSciencePortfolio/assets/project3/energy_dist_by_target.html" frameBorder="0"></iframe>
+<h4 id="observations-1">Observations</h4>
+<ol>
+<li>The distinction between Workout and Nonworkout songs is apparent.</li>
+<li>It&rsquo;s hard to determine Dislike songs since their distribution overlap with both Workout and Nonworkout songs&rsquo; distributions.</li>
+</ol>
+<h3 id="double-variables-distribution">Double variables distribution</h3>
+<iframe width="120%" height="500" src="https://bbeat2782.github.io/DataSciencePortfolio/assets/project3/energy_against_valence_by_target.html" frameBorder="0"></iframe>
+<h4 id="observations-2">Observations</h4>
+<ol>
+<li>The distinction between Workout and Nonworkout becomes more obvious than before.
+<ul>
+<li>Workout songs tend to have higher energy and valence than Nonworkout songs.</li>
+</ul>
+</li>
+<li>Since Dislike songs still overlap with the other two classes, I collected <a href="https://github.com/bbeat2782/Projects/blob/main/song_clf/util.py#L468">track&rsquo;s audio analysis</a> data and applied <a href="https://github.com/bbeat2782/Projects/blob/main/song_clf/util.py#L496">feature engineering</a> to find more meaningful features.</li>
+</ol>
+<h1 id="feature-engineering">Feature Engineering</h1>
+<p>Track&rsquo;s audio analysis data has 7 keys. Those are <code>meta</code>, <code>track</code>, <code>bars</code>, <code>beats</code>, <code>sections</code>, <code>segments</code>, and <code>tatums</code>. Among these, I&rsquo;m interested in the <code>segments</code>.</p>
+<p>According to the Spotify API website, <code>segments</code> are divided with a roughly consistent sound. Each segment in <code>segments</code> contains information such as <code>start</code>, <code>duration</code>, <code>loudness_start</code>, <code>loudness_max</code>, <code>pitches</code>, and <code>timbre</code>. <code>pitches</code> contains an array of 12 numbers each referring to the 12 pitch classes. Their values range from 0 to 1, describing the relative dominance. <code>timbre</code> also contains an array of 12 numbers. But this time, each number represents different qualities of sound and is unbounded with centered at 0.</p>
+<p>I first acquired descriptive statistics (mean, standard deviation, median, skewness, kurtosis, range, interquartile range, relative min, relative max) of loudness, pitches, and timbre from the <code>segments</code>. Then, after dividing a dataset into train and test sets, I calculated the means of each 12 timbre values and applied cosine similarity in relation to the target class.</p>
+<p>The resulting data set has 331 features with 900+ rows as a training set. So to avoid the curse of dimensionality, I applied PCA for dimension reduction. I included components up to 95% of the variability and got 114 features in the end.</p>
+<pre tabindex="0"><code>from sklearn.preprocessing import MinMaxScaler
+from sklearn.decomposition import PCA
+
+scaler = MinMaxScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.fit_transform(X_test)
+X_scaled = scaler.fit_transform(X)
+
+# Include components up to 95% variability
+pca = PCA(n_components=0.95)
+pca.fit(X_train_scaled)
+
+X_train_pca = pca.transform(X_train_scaled)
+X_test_pca = pca.transform(X_test_scaled)
+X_pca = pca.transform(X_scaled)
+
+print(f&#39;Num of columns after PCA: {X_train_pca.shape[1]}&#39;)
+
+&gt;&gt;&gt; Num of columns after PCA: 114
+</code></pre><h1 id="prediction">Prediction</h1>
+<p>With the dataset of 114 features, I tried using different models, including XGBoost Classifier and Support Vector Classifier. However, those models either failed to fit fast enough or were too complex for this project, which led to overfitting. Thus, I chose logistic regression, which is a simpler and faster algorithm compared to the others.</p>
+<p>Another reason for choosing the logistic regression model is because of its precision performance in the Workout class. While the logistic regression model has a lower accuracy than the other models, it has a higher precision score for the Workout class than the other models, which is the primary goal of this project.</p>
+<pre tabindex="0"><code>lr = LogisticRegression(solver=&#39;newton-cg&#39;, class_weight=&#39;balanced&#39;, max_iter=1000)
+lr.fit(X_train_pca, y_train)
+pred_test = lr.predict(X_test_pca)
+
+# Calculating and printing the f1 score 
+f1_test = f1_score(y_test, pred_test, average=&#39;weighted&#39;)
+print(&#39;The f1 score for the testing data:&#39;, f1_test)
+
+# Ploting the confusion matrix
+confusion_matrix(y_test, pred_test)
+
+&gt;&gt;&gt; The f1 score for the testing data: 0.6816972503451451
+&gt;&gt;&gt; array([[15, 15, 10],
+           [11, 66,  3],
+           [16, 31, 98]])
+</code></pre><p>The high precision score for the Workout class gave fewer misclassifications of the Workout class. According to the confusion matrix of the test data, the expected number of skipped songs when I listen to 40 songs during a workout is about 4.685 songs. $${10 + 3 \over (10+3+98)} \cdot 40 ≈ 4.685$$</p>
+<p>To confirm this, I recorded how many songs I skip using the new classification system.</p>
+<h1 id="application">Application</h1>
+<p>Using YouTube Data API v3, I automatically <a href="https://github.com/bbeat2782/Projects/blob/main/song_clf/util.py#L153">update YouTube workout playlist</a> with 40 recommended songs for my workout.</p>
+<figure><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project3/process.gif"/>
+</figure>
+
+<figure><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project3/youtube.png"/>
+</figure>
+
+<p>When I skip a song, I have to manually remove it from the playlist and the code will detect the skipped songs during the updating process and not recommend it in future updates.</p>
+<h1 id="result">Result</h1>
+<p>The following table is a recorded result of skipped songs during a workout with the YouTube algorithm,</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">day</th>
+<th style="text-align:left">target</th>
+<th style="text-align:right">songs_listened_to</th>
+<th style="text-align:right">skipped_songs</th>
+<th style="text-align:left">time_spent</th>
+<th style="text-align:right">exercise_time</th>
+<th style="text-align:right">num_songs_till_skip</th>
+<th style="text-align:right">skipped_songs_per_min</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2023/6/11</td>
+<td style="text-align:left">back</td>
+<td style="text-align:right">33</td>
+<td style="text-align:right">13</td>
+<td style="text-align:left">30,3,18,6,10,17,19,17,24,10,35,10,13</td>
+<td style="text-align:right">121</td>
+<td style="text-align:right">2.53846</td>
+<td style="text-align:right">0.107438</td>
+</tr>
+<tr>
+<td style="text-align:left">2023/6/12</td>
+<td style="text-align:left">leg</td>
+<td style="text-align:right">24</td>
+<td style="text-align:right">11</td>
+<td style="text-align:left">30,12,3,6,6,18,6,16,6,14,17</td>
+<td style="text-align:right">82</td>
+<td style="text-align:right">2.18182</td>
+<td style="text-align:right">0.134146</td>
+</tr>
+<tr>
+<td style="text-align:left">2023/6/13</td>
+<td style="text-align:left">back</td>
+<td style="text-align:right">27</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">18,20,17,18,12,5,8,7,20,3,2,21</td>
+<td style="text-align:right">101</td>
+<td style="text-align:right">2.25</td>
+<td style="text-align:right">0.118812</td>
+</tr>
+<tr>
+<td style="text-align:left">2023/6/14</td>
+<td style="text-align:left">chest</td>
+<td style="text-align:right">29</td>
+<td style="text-align:right">15</td>
+<td style="text-align:left">16,7,20,8,20,13,10,6,9,27,9,4,6,10,4</td>
+<td style="text-align:right">110</td>
+<td style="text-align:right">1.93333</td>
+<td style="text-align:right">0.136364</td>
+</tr>
+<tr>
+<td style="text-align:left">2023/6/15</td>
+<td style="text-align:left">back</td>
+<td style="text-align:right">28</td>
+<td style="text-align:right">18</td>
+<td style="text-align:left">25,8,9,3,13,4,5,7,12,5,24,19,4,2,9,12,9,8</td>
+<td style="text-align:right">107</td>
+<td style="text-align:right">1.55556</td>
+<td style="text-align:right">0.168224</td>
+</tr>
+</tbody>
+</table>
+<p>whereas this table contains results using the logistic regression model.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">day</th>
+<th style="text-align:left">target</th>
+<th style="text-align:right">songs_listened_to</th>
+<th style="text-align:right">skipped_songs</th>
+<th style="text-align:right">exercise_time</th>
+<th style="text-align:right">num_songs_till_skip</th>
+<th style="text-align:right">skipped_songs_per_min</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2023/8/19</td>
+<td style="text-align:left">chest</td>
+<td style="text-align:right">31</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">121</td>
+<td style="text-align:right">7.75</td>
+<td style="text-align:right">0.0330579</td>
+</tr>
+<tr>
+<td style="text-align:left">2023/8/21</td>
+<td style="text-align:left">back</td>
+<td style="text-align:right">35</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">121</td>
+<td style="text-align:right">5.83333</td>
+<td style="text-align:right">0.0495868</td>
+</tr>
+<tr>
+<td style="text-align:left">2023/8/22</td>
+<td style="text-align:left">leg</td>
+<td style="text-align:right">23</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">102</td>
+<td style="text-align:right">23</td>
+<td style="text-align:right">0.00980392</td>
+</tr>
+<tr>
+<td style="text-align:left">2023/8/23</td>
+<td style="text-align:left">chest</td>
+<td style="text-align:right">31</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">113</td>
+<td style="text-align:right">15.5</td>
+<td style="text-align:right">0.0176991</td>
+</tr>
+<tr>
+<td style="text-align:left">2023/8/24</td>
+<td style="text-align:left">back</td>
+<td style="text-align:right">31</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">121</td>
+<td style="text-align:right">31</td>
+<td style="text-align:right">0.00826446</td>
+</tr>
+</tbody>
+</table>
+<p>As you can see in the <code>skipped_songs</code> columns from the two tables, my personal classification algorithm does a better job of recommending workout songs. However, comparing the raw values isn&rsquo;t a good approach since the number of <code>skipped_songs</code> differs greatly depending on my exercise time. Thus, instead of the raw values of <code>skipped_songs</code>, I plotted the distributions of <code>skipped_songs_per_min</code>.</p>
+<iframe width="120%" height="500" src="https://bbeat2782.github.io/DataSciencePortfolio/assets/project3/skipped_songs_distributions.html" frameBorder="0"></iframe>
+<p>As you can see, the new algorithm distribution has lower <code>skipped_songs_per_min</code>, which means it&rsquo;s doing a better job at recommending workout songs than the original method. But by how much? To compare the two distributions with a single value, I calculated the mean value of <code>skipped_songs_per_min</code> for each distribution.</p>
+<pre tabindex="0"><code>print(&#39;Youtube algorithm: &#39;, wo_rec[&#39;skipped_songs_per_min&#39;].mean())
+
+&gt;&gt;&gt; Youtube algorithm:  0.10841203784175568
+
+print(&#39;Personal algorithm: &#39;, with_rec[&#39;skipped_songs_per_min&#39;].mean())
+
+&gt;&gt;&gt; Personal algorithm:  0.024278991866002086
+</code></pre><p>When comparing the two values, I get the following.</p>
+<p>$${0.1084 \over 0.02428} ≈ 4.4653$$</p>
+<p>Therefore, the new algorithm is about 4.5 times better at filtering songs I don&rsquo;t listen to when I exercise.</p>
+<p>Besides these quantitative values, I believe the workflow I built is better since it can provide more diverse playlists. When I used the YouTube algorithm, it primarily recommended songs I recently listened to. Thus, most of the time, the songs it recommended were not very much different between days, which is one of the reasons why the number of skipped songs was high. However, my personal recommendation algorithm randomly selects songs from all songs that are classified into the Workout class, and I can add any new song to the database. These two features lead to providing more diverse playlists and possibly contributed to reducing the number of <code>skipped_songs</code>.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://bbeat2782.github.io/DataSciencePortfolio/" >
+    &copy;  SangGyu An 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    
+    <a href="https://github.com/bbeat2782" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.linkedin.com/in/sanggyu-an-704104126/" target="_blank" rel="noopener" class="linkedin ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" aria-label="follow on LinkedIn——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://medium.com/@bbeat2782" target="_blank" rel="noopener" class="medium ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Medium link" aria-label="follow on Medium——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 170 170;" version="1.1" viewBox="0 0 170 170"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M46.5340803,65.2157554 C46.6968378,63.6076572 46.0836,62.018231 44.8828198,60.93592 L32.6512605,46.2010582 L32.6512605,44 L70.6302521,44 L99.9859944,108.380952 L125.794585,44 L162,44 L162,46.2010582 L151.542017,56.2281011 C150.640424,56.9153477 150.193188,58.0448862 150.380019,59.1628454 L150.380019,132.837155 C150.193188,133.955114 150.640424,135.084652 151.542017,135.771899 L161.755369,145.798942 L161.755369,148 L110.38282,148 L110.38282,145.798942 L120.963119,135.527337 C122.002801,134.487948 122.002801,134.182246 122.002801,132.592593 L122.002801,73.0417402 L92.585901,147.755438 L88.6106443,147.755438 L54.3622782,73.0417402 L54.3622782,123.115814 C54.0767278,125.221069 54.7759199,127.3406 56.2581699,128.863022 L70.0186741,145.55438 L70.0186741,147.755438 L31,147.755438 L31,145.55438 L44.7605042,128.863022 C46.2319621,127.338076 46.8903838,125.204485 46.5340803,123.115814 L46.5340803,65.2157554 Z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
