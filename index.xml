@@ -6,9 +6,20 @@
     <description>Recent content on SangGyu An</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 15 Dec 2023 11:00:59 -0400</lastBuildDate><atom:link href="https://bbeat2782.github.io/DataSciencePortfolio/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Mar 2025 11:00:00 +0000</lastBuildDate><atom:link href="https://bbeat2782.github.io/DataSciencePortfolio/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Project 4: Twitch Streamer Live Recommedation</title>
+      <title>Project 5: Evaluating Graph Transformers for Bluesky Recommendations</title>
+      <link>https://bbeat2782.github.io/DataSciencePortfolio/post/project-5/</link>
+      <pubDate>Fri, 21 Mar 2025 11:00:00 +0000</pubDate>
+      
+      <guid>https://bbeat2782.github.io/DataSciencePortfolio/post/project-5/</guid>
+      <description>Introduction Bluesky is a decentralized social media platform similar to Twitter, where the data on the network is open for access to everyone.
+📂 View project on GitHub
+What is the problem? Recommendation systems in social media platforms face unique challenges compared to traditional recommendation domains like movies or music. Unlike static user-item interactions, social media engagement is highly dynamic—users interact with new posts, trends emerge, and user preferences shift rapidly.</description>
+    </item>
+    
+    <item>
+      <title>Project 4: Twitch Streamer Live Recommedations</title>
       <link>https://bbeat2782.github.io/DataSciencePortfolio/post/project-4/</link>
       <pubDate>Fri, 15 Dec 2023 11:00:59 -0400</pubDate>
       
@@ -52,8 +63,8 @@ Moreover, as an inexperienced driver, I have been told lane changes are the most
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://bbeat2782.github.io/DataSciencePortfolio/about/</guid>
-      <description>Hello. I&amp;rsquo;m SangGyu An, who is passionate about learning and solving problems with data. With a major in Data Science at UC San Diego, I&amp;rsquo;m continuously seeking to expand my horizons and stay at the forefront of this rapidly evolving field.
-As a firm believer in the power of data, I am dedicated to uncovering meaningful insights and translating them into actionable solutions. My portfolio showcases a collection of projects where I’ve harnessed data to tackle a variety of challenges, ranging from San Diego Collision EDA to MetaCritic User Rating prediction.</description>
+      <description>Hello. I&amp;rsquo;m SangGyu An, who is passionate about understanding people through data. I recently completed my Data Science degree at UC San Diego, and my journey has centered on building real-world, human-focused solutions, especially in recommendation systems and graph-based modeling.
+Whether predicting which streamer a user might watch next, recommending posts on decentralized platforms like Bluesky, or helping artists make better decisions through concert revenue forecasting, my projects aim to translate insights into meaningful action.</description>
     </item>
     
     <item>
