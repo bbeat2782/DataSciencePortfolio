@@ -38,7 +38,7 @@
 <meta itemprop="name" content="Project 4: Twitch Streamer Live Recommedations">
 <meta itemprop="description" content="Recommending Twitch live streamers with an emphasis on the role of the most recent interaction"><meta itemprop="datePublished" content="2023-12-15T11:00:59-04:00" />
 <meta itemprop="dateModified" content="2023-12-15T11:00:59-04:00" />
-<meta itemprop="wordCount" content="1773">
+<meta itemprop="wordCount" content="1830">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Project 4: Twitch Streamer Live Recommedations"/>
 <meta name="twitter:description" content="Recommending Twitch live streamers with an emphasis on the role of the most recent interaction"/>
@@ -190,7 +190,7 @@
 <p>As a streaming platform, recommending streamers that users would enjoy could keep their interest and make them stay on the platform. However, live recommendation is different from traditional recommendation tasks. The first thing is dynamic availability. In traditional recommendation tasks, items are almost always available after they become available. However, in a live streaming platform, item (streamer) availability depends on when each streamer streams. Second, items are repeatedly consumed. For instance, in movie recommendations, it&rsquo;s rarely the case that a user repeatedly watches already-watched movies. However, with this Twitch dataset, repeat consumptions are the majority of interactions. Thus, when approaching this problem, we need to consider these.</p>
 <h1 id="overview">Overview</h1>
 <ul>
-<li>Implemented Factorizing Personalized Markov Chains (FPMC) and Personalized Ranking Metric Embedding (PRME) in TensorFlow.</li>
+<li>Implemented Factorizing Personalized Markov Chains (FPMC) and FPMC_ext (borrowing location-based compatibility from Personalized Ranking Metric Embedding) in TensorFlow.</li>
 <li>Evaluated different models using Precision@K and Mean reciprocal rank and concluded the importance of recent interactions and geographical distance for recommending the next streamer to watch.</li>
 <li>Achieved Precision@10 of 0.659, which is about a 0.115 increase compared to the baseline.</li>
 <li>Link to <a href="https://github.com/bbeat2782/Projects/blob/main/twitch/notebook.ipynb">Jupyter notebook</a></li>
@@ -352,13 +352,16 @@
 <p>$$f(i|u,j) = \gamma_{u}^{(ui)}⋅\gamma_{i}^{(iu)}+\gamma_{i}^{(ij)}⋅\gamma_{j}^{(ji)}$$</p>
 <p>Similarly, the loss is determined by the following with the additional term j which indicates a previous item.</p>
 <p>$$\sigma(f(i|u,j) - f(i&rsquo;|u,j))$$</p>
-<h3 id="personalized-ranking-metric-embedding-prme">Personalized Ranking Metric Embedding (PRME)</h3>
+<h3 id="fpmc_ext">FPMC_ext</h3>
+<h4 id="combining-fpmc-with-personalized-ranking-metric-embedding-prme">Combining FPMC with Personalized Ranking Metric Embedding (PRME)</h4>
 <p>Another model we can use is PRME, which is essentially the same as FPMC except that it uses the Euclidean distance instead of the product between gamma values for the interaction between the previous and current item. The idea behind this change is that neighboring items in sequential data are likely to be similar instead of one being an extreme of the other.</p>
+<p>$$f(i|u,j) = -||\gamma_{u}^{(ui)} - \gamma_{i}^{(iu)}||-||\gamma_{i}^{(ij)} - \gamma_{j}^{(ji)}||$$</p>
+<p>So I borrowed the use of Euclidean distance for capturing the compatibility between current and previous items. The mix of dot product and Euclidean distance would allow the model to capture user&rsquo;s preference strength and direction and consider location-based compatibility between previous and current item for better personalized recommendation.</p>
 <p>$$f(i|u,j) = \gamma_{u}^{(ui)}⋅\gamma_{i}^{(iu)}-||\gamma_{i}^{(ij)} - \gamma_{j}^{(ji)}||$$</p>
 <h1 id="prediction">Prediction</h1>
-<p>For the first baseline, which is about counting previous interactions for ordering, it is easily done with pandas functions. For MF, FPMC, and PRME, I used the code from <a href="https://cseweb.ucsd.edu/~jmcauley/pml/code/chap7.html">Personalized Machine Learning</a> as a baseline with several modifications such as incorporating dynamic availability in negative sampling and using the Euclidean distance instead of product depending on the model [4].</p>
-<p>The following plots are training loss for each MF, FPMC, and PRME model with early stopping when there isn&rsquo;t an improvement in loss in 30 steps.</p>
-<p><figure><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project4/MF_trainingloss.png"/>
+<p>For the first baseline, which is about counting previous interactions for ordering, it is easily done with pandas functions. For MF, FPMC, and FPMC_ext., I used the code from <a href="https://cseweb.ucsd.edu/~jmcauley/pml/code/chap7.html">Personalized Machine Learning</a> as a baseline with several modifications such as incorporating dynamic availability in negative sampling and using the Euclidean distance instead of product depending on the model [4].</p>
+<p>The training was done in CPU with early stopping when there wasn&rsquo;t an improvement in loss in 30 steps.</p>
+<!-- <figure><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project4/MF_trainingloss.png"/>
 </figure>
 
 <figure><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project4/FPMC_trainingloss.png"/>
@@ -366,7 +369,7 @@
 
 <figure><img src="https://bbeat2782.github.io/DataSciencePortfolio/images/project4/PRME_trainingloss.png"/>
 </figure>
-</p>
+ -->
 <p>The following table shows the evaluation metric scores for all 4 models. Since this dataset is mostly about repeat consumption but we are also interested in recommending new streamers for users, I separated the precision@k score into old, new, and all.</p>
 <table>
 <thead>
@@ -375,7 +378,7 @@
 <th style="text-align:left">Baseline 1</th>
 <th style="text-align:left">MF</th>
 <th style="text-align:left">FPMC</th>
-<th style="text-align:left">PRME</th>
+<th style="text-align:left">FPMC_ext</th>
 </tr>
 </thead>
 <tbody>
@@ -454,8 +457,8 @@
 <h1 id="interpretation">Interpretation</h1>
 <p>As you can see from the result table, the baseline model actually does the best job of recommending repeat (old) consumption compared to all other models. This is primarily because the majority of interactions are repeat consumption. Due to this, the baseline also has a better score in precision@k_all than the MF model.</p>
 <p>One of the biggest problems with this baseline is that it can never recommend new streamers, which is why the precision scores for new are all 0. Thus, it&rsquo;s simply showing users their histories rather than recommending them, and the ordering will hardly ever change due to how histories stack unless it gets cleared every 1 or 2 weeks. To solve this problem, we should consider other models.</p>
-<p>With the MF, FPMC, and PRME models, you can see how they perform much better in recommending new items compared to the baseline model. From the result, models that include the user&rsquo;s previous interaction (FPMC and PRME) perform better. This shows that it&rsquo;s important to consider the latest user interaction to recommend what a user would watch next. Another thing to take note of is the superior results from PRME. This shows that recommending Twitch streamers works best with the geographical distance between streamers.</p>
-<p>Considering Twitch user watch behavior, the reason why PRME works the best makes sense. For instance, when user A recently got into streamer Z, it&rsquo;s likely that user A would watch streamer Z next even though streamer Y shows up the most in the user&rsquo;s history. And when user A previously watched a streamer playing a game with some violence, it doesn&rsquo;t mean the user is going to watch a streamer who plays the most violent game. Instead, the user is likely going to stick around with streamers who play games with a similar amount of violence.</p>
+<p>With the MF, FPMC, and FPMC_ext models, you can see how they perform much better in recommending new items compared to the baseline model. From the result, models that include the user&rsquo;s previous interaction (FPMC and FPMC_ext) perform better. This shows that it&rsquo;s important to consider the latest user interaction to recommend what a user would watch next. Another thing to take note of is the superior results from FPMC_ext. This shows that recommending Twitch streamers works best with the geographical distance between streamers.</p>
+<p>Considering Twitch user watch behavior, the reason why FPMC_ext works the best makes sense. For instance, when user A recently got into streamer Z, it&rsquo;s likely that user A would watch streamer Z next even though streamer Y shows up the most in the user&rsquo;s history. And when user A previously watched a streamer playing a game with some violence, it doesn&rsquo;t mean the user is going to watch a streamer who plays the most violent game. Instead, the user is likely going to stick around with streamers who play games with a similar amount of violence.</p>
 <h1 id="conclusion">Conclusion</h1>
 <p>With the result, we can take away 4 things.</p>
 <ol>
